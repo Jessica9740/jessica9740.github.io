@@ -1,7 +1,12 @@
 services:
-  blog:
+  app:
     build: .
     ports:
-      - "8080:80"
+      - "8080:8000"
     volumes:
-      - ./output:/usr/share/nginx/html:ro
+      - ./output:/app/output
+      - ./content:/app/content
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
+    env_file:
+      - .env

@@ -6,3 +6,5 @@ click>=8.1.8
 pyyaml>=6.0.3
 ghp-import>=2.1.0
 python-dotenv>=1.2.1
+fastapi>=0.115.0
+uvicorn>=0.30.0

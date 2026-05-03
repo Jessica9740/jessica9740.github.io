@@ -33,9 +33,9 @@ def build_site() -> None:
 
     env = Environment(loader=FileSystemLoader(str(templates_dir)))
 
-    if output_dir.exists():
-        shutil.rmtree(output_dir)
-    output_dir.mkdir()
+    output_dir.mkdir(exist_ok=True)
+    for item in output_dir.iterdir():
+        shutil.rmtree(item) if item.is_dir() else item.unlink()
     (output_dir / "posts").mkdir()
 
     md_converter = markdown.Markdown(
@@ -49,7 +49,11 @@ def build_site() -> None:
     )
 
     for md_file in md_files:
-        post_data_raw = frontmatter.load(md_file)
+        try:
+            post_data_raw = frontmatter.load(md_file)
+        except Exception as e:
+            print(f"  ⚠️  {md_file.name} frontmatter 파싱 실패, 건너뜀: {e}")
+            continue
         md_converter.reset()
         html_content = md_converter.convert(post_data_raw.content)
 
