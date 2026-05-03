@@ -1,4 +1,7 @@
 import click
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from .builder import build_site
 from .generator import generate_post
