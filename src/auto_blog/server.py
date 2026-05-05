@@ -415,7 +415,7 @@ async def update_category(slug: str, request: Request):
     if not _is_authenticated(request):
         return JSONResponse({"error": "unauthorized"}, status_code=401)
     body = await request.json()
-    category = (body.get("category") or "").strip()
+    category = (body.get("category") or "").strip().strip("*#` \t")
     if not category:
         return JSONResponse({"error": "category required"}, status_code=400)
     f = _find_content_file(slug)
@@ -620,6 +620,7 @@ def categorize(request: Request):
                     }],
                 )
                 category = resp.content[0].text.strip().splitlines()[0]
+                category = category.strip("*#` \t")
                 post.metadata["category"] = category
                 with open(f, "w", encoding="utf-8") as out:
                     out.write(fm.dumps(post))

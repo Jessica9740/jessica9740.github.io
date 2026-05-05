@@ -1,13 +1,9 @@
 import re
-import sys
-import urllib.parse
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
 
 import anthropic
 import frontmatter
-import httpx
 
 STYLE_PROMPTS = {
     "informative": "정보 제공형으로. 사실과 근거를 바탕으로 독자가 새로운 것을 배울 수 있도록",
@@ -43,34 +39,6 @@ Rules:
 - 한국어로 작성
 - 출력은 반드시 --- 로 시작하는 YAML frontmatter부터 시작
 - 참고 자료는 Wikipedia, 공식 문서(docs.python.org, developer.mozilla.org 등), GitHub, 공식 사이트 등 실제 존재하는 URL만 사용. 3~5개 포함."""
-
-
-def _generate_image(title: str, tags: list, slug: str, content_dir: Path) -> Optional[str]:
-    """Pollinations.ai로 블로그 헤더 이미지를 생성하고 저장합니다."""
-    tag_str = ", ".join(tags[:3]) if tags else ""
-    prompt = f"professional blog header image, {title}, {tag_str}, minimalist, modern, flat design, no text"
-    encoded = urllib.parse.quote(prompt)
-    url = (
-        f"https://image.pollinations.ai/prompt/{encoded}"
-        f"?width=1200&height=630&nologo=true&model=flux&seed=42"
-    )
-
-    images_dir = content_dir / "images"
-    images_dir.mkdir(exist_ok=True)
-    img_path = images_dir / f"{slug}.jpg"
-
-    print(f"\n🎨 이미지 생성 중...", flush=True)
-    try:
-        resp = httpx.get(url, timeout=60, follow_redirects=True)
-        if resp.status_code == 200 and resp.headers.get("content-type", "").startswith("image"):
-            img_path.write_bytes(resp.content)
-            print(f"✅ 이미지 저장: {img_path.name}")
-            return f"/images/{slug}.jpg"
-        else:
-            print(f"⚠️  이미지 생성 실패 (status {resp.status_code})")
-    except Exception as e:
-        print(f"⚠️  이미지 생성 실패: {e}")
-    return None
 
 
 def generate_post(topic: str, style: str = "informative") -> Path:
@@ -135,11 +103,6 @@ def generate_post(topic: str, style: str = "informative") -> Path:
 
     content_dir = Path(__file__).parent.parent.parent / "content"
     content_dir.mkdir(exist_ok=True)
-
-    # 이미지 생성
-    image_path = _generate_image(title, tags, slug, content_dir)
-    if image_path:
-        post.metadata["image"] = image_path
 
     output_path = content_dir / filename
     with open(output_path, "w", encoding="utf-8") as f:
