@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계란찜기 완벽 사용법 - 부드럽고 촉촉한 계란찜 만드는 모든 방법 — Jess Notes</title>
+  <meta name="description" content="집집마다 하나쯤 있는 계란찜기, 제대로 활용하고 계신가요? 전기 계란찜기부터 전자레인지용, 냄비를 이용한 전통 방식까지 부드럽고 매끄러운 계란찜을 만드는 완벽한 사용법을 정리했습니다.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --accent: #7c6aff;
+      --accent-light: #a78bfa;
+      --green: #34d399;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-light); text-decoration: none; }
+    a:hover { color: var(--accent); text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15, 17, 23, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    header .inner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    header .logo span { color: var(--accent); }
+
+    header nav a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+    }
+
+    header nav a:hover { color: var(--text); text-decoration: none; }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(124, 106, 255, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+  </style>
+  
+<style>
+  .post-header {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .post-header .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-header .date {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .post-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .post-header .excerpt {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  .post-content {
+    max-width: 720px;
+  }
+
+  .post-content h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 2.5rem 0 1rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: var(--text);
+  }
+
+  .post-content p {
+    margin-bottom: 1.2rem;
+    color: #cdd6e8;
+    line-height: 1.85;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 0.75rem 0 1.2rem 1.5rem;
+    color: #cdd6e8;
+  }
+
+  .post-content li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+
+  .post-content strong { color: var(--text); }
+
+  .post-content code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.87em;
+    color: var(--accent-light);
+  }
+
+  .post-content pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+  }
+
+  .post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .post-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1.2rem;
+    margin: 1.5rem 0;
+    background: rgba(124, 106, 255, 0.07);
+    border-radius: 0 6px 6px 0;
+    color: var(--muted);
+  }
+
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+
+  .post-content th, .post-content td {
+    border: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    text-align: left;
+  }
+
+  .post-content th {
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover { color: var(--accent-light); text-decoration: none; }
+
+  .post-image { width:100%; max-height:420px; object-fit:cover; border-radius:12px;
+    margin-bottom:2.5rem; border:1px solid var(--border); }
+
+  .post-content .references { margin-top:2.5rem; padding:1.5rem; background:var(--surface);
+    border:1px solid var(--border); border-radius:10px; }
+  .post-content .references h2 { font-size:1.1rem; margin-bottom:1rem;
+    border-bottom:1px solid var(--border); padding-bottom:.5rem; }
+  .post-content .references ul { margin-left:1.2rem; }
+  .post-content .references li { margin-bottom:.5rem; font-size:.9rem; }
+  .post-content .references a { color:var(--accent-light); word-break:break-all; }
+
+  .cat-edit-wrap { display:inline-flex; align-items:center; gap:.4rem; }
+  .cat-edit-btn { background:none; border:none; cursor:pointer; color:var(--muted);
+    font-size:.75rem; padding:.1rem .35rem; border-radius:4px; transition:color .15s; }
+  .cat-edit-btn:hover { color:var(--accent-light); }
+  .cat-edit-form { display:none; align-items:center; gap:.4rem; }
+  .cat-edit-form.on { display:inline-flex; }
+  .cat-edit-input { background:var(--surface); border:1.5px solid var(--accent);
+    border-radius:6px; color:var(--text); font-size:.8rem; padding:.25rem .6rem;
+    outline:none; width:120px; }
+  .cat-edit-save { background:var(--accent); color:#fff; border:none; border-radius:6px;
+    font-size:.78rem; font-weight:600; padding:.25rem .7rem; cursor:pointer; }
+  .cat-edit-save:hover { background:#6356d4; }
+  .cat-edit-cancel { background:none; border:none; color:var(--muted); font-size:.78rem;
+    cursor:pointer; padding:.25rem .4rem; }
+  .cat-edit-cancel:hover { color:var(--text); }
+  .cat-msg { font-size:.78rem; margin-left:.4rem; }
+</style>
+
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:9px;">
+        <img src="/static/logo.jpg" width="32" height="32" alt="logo" style="border-radius:8px;"/>
+        Jess Notes<span>.</span>
+      </a>
+      <nav>
+        <a href="/">홈</a>
+        <a href="/posts/">글 목록</a>
+        <a href="/admin" style="background:var(--accent);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.75rem;font-weight:600;white-space:nowrap;">✍️</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    
+<article>
+  <header class="post-header">
+    <div class="meta">
+      <span class="date">2026-05-05 10:36</span>
+      
+      <div class="cat-edit-wrap">
+        <a href="/categories/기타/" id="cat-badge" style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--green);border-radius:12px;padding:.15rem .6rem;font-size:.75rem;font-weight:600;text-decoration:none;">기타</a>
+        <button class="cat-edit-btn" onclick="toggleCatEdit()" title="카테고리 변경">✏️</button>
+        <span class="cat-edit-form" id="cat-form">
+          <input class="cat-edit-input" id="cat-input" value="기타" placeholder="카테고리 입력" />
+          <button class="cat-edit-save" onclick="saveCategory('계란찜기-완벽-사용법-부드럽고-촉촉한-계란찜-만드는-모든-방법')">저장</button>
+          <button class="cat-edit-cancel" onclick="toggleCatEdit()">✕</button>
+          <span class="cat-msg" id="cat-msg"></span>
+        </span>
+      </div>
+      
+      
+      <span class="tag">계란찜</span>
+      
+      <span class="tag">요리법</span>
+      
+      <span class="tag">주방가전</span>
+      
+      <span class="tag">계란요리</span>
+      
+      <span class="tag">자취요리</span>
+      
+    </div>
+    <h1>계란찜기 완벽 사용법 - 부드럽고 촉촉한 계란찜 만드는 모든 방법</h1>
+    
+    <p class="excerpt">집집마다 하나쯤 있는 계란찜기, 제대로 활용하고 계신가요? 전기 계란찜기부터 전자레인지용, 냄비를 이용한 전통 방식까지 부드럽고 매끄러운 계란찜을 만드는 완벽한 사용법을 정리했습니다.</p>
+    
+  </header>
+
+  
+
+  <div class="post-content">
+    <p>계란찜은 한국인의 식탁에서 빠질 수 없는 반찬 중 하나입니다. 부드러운 식감과 고소한 맛 덕분에 남녀노소 모두가 좋아하는 요리이지만, 의외로 잘 만들기 어려운 음식이기도 합니다. 너무 익히면 푸석해지고, 덜 익히면 비린내가 나기 때문입니다. 다행히 최근에는 다양한 형태의 <strong>계란찜기</strong>가 출시되어 누구나 쉽게 식당에서 먹는 듯한 부드러운 계란찜을 만들 수 있게 되었습니다.</p>
+<p>이번 글에서는 계란찜기의 종류별 사용법과 함께, 실패하지 않는 황금 비율, 그리고 알아두면 유용한 팁까지 자세히 안내해 드리겠습니다.</p>
+<h2 id="_1">계란찜기의 종류와 원리</h2>
+<p>계란찜기는 크게 세 가지 형태로 나뉩니다.</p>
+<ul>
+<li><strong>전기 계란찜기(전용 가전)</strong>: 물을 끓여 발생하는 수증기로 계란을 익히는 방식입니다. 일정한 온도와 시간이 자동으로 제어되어 실패 확률이 낮습니다.</li>
+<li><strong>전자레인지용 계란찜기(플라스틱·실리콘 용기)</strong>: 전자파를 이용해 빠르게 조리하는 방식으로, 5분 내외에 완성됩니다.</li>
+<li><strong>뚝배기·냄비형 찜 도구</strong>: 가스불에 직접 올려 사용하는 전통 방식으로, 식당에서 흔히 보는 봉긋한 형태의 계란찜을 만들 수 있습니다.</li>
+</ul>
+<p>계란찜이 부드럽게 익는 원리는 단백질의 <strong>변성 온도</strong>에 있습니다. 계란 흰자는 약 60~65℃, 노른자는 약 65~70℃에서 응고가 시작되며, 80℃ 이상에서 완전히 굳습니다. 이 온도를 너무 빠르게 넘기면 단백질 구조가 단단해지면서 푸석한 식감이 됩니다. 따라서 <strong>수증기로 천천히 익히는 방식</strong>이 가장 부드러운 계란찜을 만드는 비결입니다.</p>
+<h2 id="_2">전기 계란찜기 사용법</h2>
+<p>전기 계란찜기는 주로 삶은 달걀용으로 출시되지만, 최근에는 계란찜 기능을 갖춘 제품도 많습니다. 일반적인 사용 순서는 다음과 같습니다.</p>
+<ol>
+<li><strong>물 채우기</strong>: 본체 하단에 계량컵으로 물을 부어줍니다. 제조사마다 다르지만 보통 50~80ml가 권장됩니다. 물이 많을수록 조리 시간이 길어집니다.</li>
+<li><strong>계란 풀기</strong>: 계란 2~3개를 그릇에 풀고 동량의 물 또는 육수(약 1:1 비율)를 넣어 잘 섞어줍니다. 소금은 약간만 넣어주세요.</li>
+<li><strong>체에 거르기</strong>: 계란물을 체에 한 번 걸러주면 알끈이 제거되어 훨씬 부드러운 식감이 됩니다.</li>
+<li><strong>찜기에 넣고 작동</strong>: 전용 용기에 계란물을 붓고 본체에 넣은 뒤 뚜껑을 덮습니다. 보통 10~15분이면 완성됩니다.</li>
+<li><strong>뜸 들이기</strong>: 완성 후 2~3분 정도 뚜껑을 덮어 두면 윗면까지 잘 익습니다.</li>
+</ol>
+<h2 id="_3">전자레인지용 계란찜기 사용법</h2>
+<p>자취생이나 1인 가구에게 가장 인기 있는 방식입니다. 빠르고 설거지도 간편합니다.</p>
+<ol>
+<li>계란 2개를 풀고 물 또는 육수를 1:1 비율(약 100ml)로 섞습니다.</li>
+<li>소금 약간, 다진 파, 새우젓 1/2 작은술을 넣어 간을 맞춥니다.</li>
+<li>전자레인지 전용 계란찜기 용기에 부어줍니다.</li>
+<li><strong>700W 기준 약 3분, 1000W 기준 약 2분</strong> 돌립니다.</li>
+<li>한 번에 다 돌리지 말고 <strong>1분 30초씩 두 번에 나누어</strong> 돌리면 폭발을 방지하고 더 균일하게 익습니다.</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>주의</strong>: 밀폐 뚜껑은 반드시 살짝 열어두거나 전용 통기구가 있는 제품을 사용해야 합니다. 밀폐된 상태로 가열하면 내부 압력으로 인해 계란이 폭발할 수 있습니다.</p>
+</blockquote>
+<h2 id="_4">뚝배기형 계란찜 만들기 (식당 스타일)</h2>
+<p>식당에서 봉긋하게 부풀어 오른 계란찜은 사실 뚝배기와 직접 가열 방식의 조합으로 만들어집니다.</p>
+<p><strong>재료 (2인분)</strong><br />
+- 계란 3개<br />
+- 물 또는 멸치육수 200ml<br />
+- 새우젓 1작은술<br />
+- 다진 파 약간<br />
+- 참기름 약간</p>
+<p><strong>조리법</strong><br />
+1. 뚝배기에 물(또는 육수)을 붓고 끓입니다.<br />
+2. 물이 끓기 시작하면 풀어 놓은 계란물을 부어줍니다.<br />
+3. <strong>약불로 줄이고 나무 숟가락으로 천천히 저어줍니다.</strong> 계란이 살짝 몽글해질 때까지 약 1~2분간 저어주세요.<br />
+4. 계란이 절반 정도 익으면 뚜껑을 덮고 약불에서 2~3분 더 가열합니다.<br />
+5. 윗면이 봉긋하게 부풀어 오르면 불을 끄고 참기름과 파를 올려 마무리합니다.</p>
+<p>이때 핵심은 <strong>저어주는 시점</strong>입니다. 너무 일찍 저으면 풀어지고, 너무 늦게 저으면 바닥이 탑니다. 표면이 살짝 응고되기 시작할 때 저어주는 것이 가장 좋습니다.</p>
+<h2 id="_5">황금 비율과 실패하지 않는 팁</h2>
+<p>계란찜의 성패는 결국 <strong>계란과 물의 비율</strong>에 달려 있습니다. 농촌진흥청의 식품 자료에 따르면, 부드러운 계란찜을 위해서는 계란과 물(또는 육수)을 <strong>1:1 또는 1:1.5 비율</strong>로 맞추는 것이 좋습니다.</p>
+<p><strong>부드러운 계란찜을 위한 추가 팁:</strong></p>
+<ul>
+<li><strong>체에 거르기</strong>: 알끈과 거품을 제거해 식감을 균일하게 합니다.</li>
+<li><strong>거품 제거</strong>: 계란물 표면의 거품을 숟가락으로 걷어내야 매끄러운 표면이 됩니다.</li>
+<li><strong>육수 사용</strong>: 물 대신 멸치육수, 다시마육수, 가쓰오부시 육수를 사용하면 감칠맛이 살아납니다.</li>
+<li><strong>약불 유지</strong>: 강불에서 빠르게 익히면 표면에 구멍이 생기고 푸석해집니다.</li>
+<li><strong>새우젓으로 간하기</strong>: 소금보다 새우젓을 사용하면 깊은 풍미가 더해집니다.</li>
+<li><strong>두부나 게맛살 추가</strong>: 으깬 두부나 잘게 찢은 게맛살을 넣으면 식감이 풍부해집니다.</li>
+</ul>
+<h2 id="_6">자주 하는 질문</h2>
+<p><strong>Q. 계란찜에 구멍이 생기는 이유는?</strong><br />
+A. 너무 강한 불에서 빠르게 가열했거나, 계란물 안의 공기방울이 제거되지 않았기 때문입니다. 약불 조리와 거품 제거가 해답입니다.</p>
+<p><strong>Q. 계란찜에서 비린내가 나요.</strong><br />
+A. 계란이 충분히 익지 않았거나 신선하지 않은 경우입니다. 청주 1작은술을 넣거나 다진 파, 마늘을 추가하면 잡내가 잡힙니다.</p>
+<p><strong>Q. 계란찜기 청소는 어떻게 하나요?</strong><br />
+A. 전기 계란찜기는 사용 후 식힌 뒤 본체 내부의 물때를 식초물(물 1컵 + 식초 1큰술)을 넣고 한 번 작동시켜 제거할 수 있습니다. 전용 용기는 중성세제로 부드럽게 닦아줍니다.</p>
+<h2 id="_7">마무리</h2>
+<p>계란찜은 단순한 음식 같지만 도구의 선택과 사소한 디테일이 맛을 좌우합니다. 자신의 라이프스타일에 맞는 계란찜기를 선택하고, 위에서 소개한 황금 비율과 팁만 잘 지킨다면 식당 못지않은 부드러운 계란찜을 누구나 만들 수 있습니다. 오늘 저녁 식탁에 따뜻한 계란찜 한 그릇 올려보시는 건 어떠세요?</p>
+<h2 id="_8">참고 자료</h2>
+<ul>
+<li><a href="https://ko.wikipedia.org/wiki/%EB%8B%AC%EA%B1%80">계란(달걀) - 위키백과</a></li>
+<li><a href="https://www.nongsaro.go.kr/portal/ps/psb/psbk/kidConDtl.ps?menuId=PS65290&amp;kidofcomdtyNo=326">농촌진흥청 농사로 - 농식품 정보</a></li>
+<li><a href="https://www.foodsafetykorea.go.kr/portal/healthyfoodlife/foodNutrient.do">식품안전나라 - 계란 안전 정보</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Egg_as_food">Egg as Food - Wikipedia</a></li>
+<li><a href="https://www.sciencedirect.com/topics/food-science/protein-denaturation">Protein denaturation - ScienceDirect</a></li>
+</ul>
+  </div>
+
+  <footer class="post-footer">
+    <a href="/" class="back-link">← 목록으로</a>
+  </footer>
+</article>
+
+<script>
+  function toggleCatEdit() {
+    const form = document.getElementById('cat-form');
+    form.classList.toggle('on');
+    if (form.classList.contains('on')) document.getElementById('cat-input').focus();
+    document.getElementById('cat-msg').textContent = '';
+  }
+
+  async function saveCategory(slug) {
+    const cat = document.getElementById('cat-input').value.trim();
+    const msg = document.getElementById('cat-msg');
+    if (!cat) { msg.style.color = '#f87171'; msg.textContent = '카테고리를 입력해 주세요.'; return; }
+
+    msg.style.color = 'var(--muted)'; msg.textContent = '저장 중...';
+    const res = await fetch(`/admin/api/posts/${encodeURIComponent(slug)}/category`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category: cat }),
+    });
+
+    if (res.ok) {
+      msg.style.color = 'var(--green)'; msg.textContent = '✅ 저장됨. 페이지 재로드 중...';
+      setTimeout(() => location.reload(), 1500);
+    } else if (res.status === 401) {
+      msg.style.color = '#f87171'; msg.textContent = '로그인이 필요합니다.';
+    } else {
+      msg.style.color = '#f87171'; msg.textContent = '오류가 발생했습니다.';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('cat-form').classList.contains('on')) {
+      saveCategory('계란찜기-완벽-사용법-부드럽고-촉촉한-계란찜-만드는-모든-방법');
+    }
+  });
+</script>
+
+  </main>
+
+  <footer>
+    <p>© Jessica</p>
+  </footer>
+</body>
+</html>

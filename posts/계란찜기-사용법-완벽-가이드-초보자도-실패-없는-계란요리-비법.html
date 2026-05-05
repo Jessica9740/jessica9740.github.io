@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계란찜기 사용법 완벽 가이드: 초보자도 실패 없는 계란요리 비법 — Jess Notes</title>
+  <meta name="description" content="계란찜기 하나면 삶은 계란부터 수란, 계란찜까지 완벽하게 만들 수 있습니다. 이 글에서는 계란찜기의 기본 원리부터 단계별 사용법, 실패하지 않는 꿀팁까지 자세히 안내합니다.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --accent: #7c6aff;
+      --accent-light: #a78bfa;
+      --green: #34d399;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-light); text-decoration: none; }
+    a:hover { color: var(--accent); text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15, 17, 23, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    header .inner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    header .logo span { color: var(--accent); }
+
+    header nav a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+    }
+
+    header nav a:hover { color: var(--text); text-decoration: none; }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(124, 106, 255, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+  </style>
+  
+<style>
+  .post-header {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .post-header .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-header .date {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .post-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .post-header .excerpt {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  .post-content {
+    max-width: 720px;
+  }
+
+  .post-content h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 2.5rem 0 1rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: var(--text);
+  }
+
+  .post-content p {
+    margin-bottom: 1.2rem;
+    color: #cdd6e8;
+    line-height: 1.85;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 0.75rem 0 1.2rem 1.5rem;
+    color: #cdd6e8;
+  }
+
+  .post-content li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+
+  .post-content strong { color: var(--text); }
+
+  .post-content code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.87em;
+    color: var(--accent-light);
+  }
+
+  .post-content pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+  }
+
+  .post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .post-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1.2rem;
+    margin: 1.5rem 0;
+    background: rgba(124, 106, 255, 0.07);
+    border-radius: 0 6px 6px 0;
+    color: var(--muted);
+  }
+
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+
+  .post-content th, .post-content td {
+    border: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    text-align: left;
+  }
+
+  .post-content th {
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover { color: var(--accent-light); text-decoration: none; }
+
+  .post-image { width:100%; max-height:420px; object-fit:cover; border-radius:12px;
+    margin-bottom:2.5rem; border:1px solid var(--border); }
+
+  .post-content .references { margin-top:2.5rem; padding:1.5rem; background:var(--surface);
+    border:1px solid var(--border); border-radius:10px; }
+  .post-content .references h2 { font-size:1.1rem; margin-bottom:1rem;
+    border-bottom:1px solid var(--border); padding-bottom:.5rem; }
+  .post-content .references ul { margin-left:1.2rem; }
+  .post-content .references li { margin-bottom:.5rem; font-size:.9rem; }
+  .post-content .references a { color:var(--accent-light); word-break:break-all; }
+
+  .cat-edit-wrap { display:inline-flex; align-items:center; gap:.4rem; }
+  .cat-edit-btn { background:none; border:none; cursor:pointer; color:var(--muted);
+    font-size:.75rem; padding:.1rem .35rem; border-radius:4px; transition:color .15s; }
+  .cat-edit-btn:hover { color:var(--accent-light); }
+  .cat-edit-form { display:none; align-items:center; gap:.4rem; }
+  .cat-edit-form.on { display:inline-flex; }
+  .cat-edit-input { background:var(--surface); border:1.5px solid var(--accent);
+    border-radius:6px; color:var(--text); font-size:.8rem; padding:.25rem .6rem;
+    outline:none; width:120px; }
+  .cat-edit-save { background:var(--accent); color:#fff; border:none; border-radius:6px;
+    font-size:.78rem; font-weight:600; padding:.25rem .7rem; cursor:pointer; }
+  .cat-edit-save:hover { background:#6356d4; }
+  .cat-edit-cancel { background:none; border:none; color:var(--muted); font-size:.78rem;
+    cursor:pointer; padding:.25rem .4rem; }
+  .cat-edit-cancel:hover { color:var(--text); }
+  .cat-msg { font-size:.78rem; margin-left:.4rem; }
+</style>
+
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:9px;">
+        <img src="/static/logo.jpg" width="32" height="32" alt="logo" style="border-radius:8px;"/>
+        Jess Notes<span>.</span>
+      </a>
+      <nav>
+        <a href="/">홈</a>
+        <a href="/posts/">글 목록</a>
+        <a href="/admin" style="background:var(--accent);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.75rem;font-weight:600;white-space:nowrap;">✍️</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    
+<article>
+  <header class="post-header">
+    <div class="meta">
+      <span class="date">2026-05-05 10:36</span>
+      
+      <div class="cat-edit-wrap">
+        <a href="/categories/기타/" id="cat-badge" style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--green);border-radius:12px;padding:.15rem .6rem;font-size:.75rem;font-weight:600;text-decoration:none;">기타</a>
+        <button class="cat-edit-btn" onclick="toggleCatEdit()" title="카테고리 변경">✏️</button>
+        <span class="cat-edit-form" id="cat-form">
+          <input class="cat-edit-input" id="cat-input" value="기타" placeholder="카테고리 입력" />
+          <button class="cat-edit-save" onclick="saveCategory('계란찜기-사용법-완벽-가이드-초보자도-실패-없는-계란요리-비법')">저장</button>
+          <button class="cat-edit-cancel" onclick="toggleCatEdit()">✕</button>
+          <span class="cat-msg" id="cat-msg"></span>
+        </span>
+      </div>
+      
+      
+      <span class="tag">계란찜기</span>
+      
+      <span class="tag">주방가전</span>
+      
+      <span class="tag">요리팁</span>
+      
+      <span class="tag">계란요리</span>
+      
+      <span class="tag">생활정보</span>
+      
+    </div>
+    <h1>계란찜기 사용법 완벽 가이드: 초보자도 실패 없는 계란요리 비법</h1>
+    
+    <p class="excerpt">계란찜기 하나면 삶은 계란부터 수란, 계란찜까지 완벽하게 만들 수 있습니다. 이 글에서는 계란찜기의 기본 원리부터 단계별 사용법, 실패하지 않는 꿀팁까지 자세히 안내합니다.</p>
+    
+  </header>
+
+  
+
+  <div class="post-content">
+    <p>아침 식사에서 빠질 수 없는 계란. 하지만 가스레인지 앞에서 시간을 재고 물 양을 조절하는 일은 생각보다 번거롭습니다. 이런 불편함을 해결해주는 것이 바로 <strong>계란찜기(Egg Cooker)</strong> 입니다. 적은 전력으로 짧은 시간 안에 일정한 품질의 계란 요리를 만들 수 있어 1인 가구부터 가족 단위까지 폭넓게 사용되고 있죠.</p>
+<p>이번 글에서는 계란찜기의 작동 원리, 올바른 사용법, 그리고 자주 발생하는 실수와 해결 방법을 정리했습니다.</p>
+<h2 id="_1">계란찜기란 무엇인가?</h2>
+<p>계란찜기는 <strong>증기(스팀)를 이용해 계란을 익히는 소형 조리 가전</strong>입니다. 일반적으로 다음과 같은 부품으로 구성되어 있습니다.</p>
+<ul>
+<li><strong>본체(가열판)</strong>: 바닥에 발열체가 있어 물을 데워 증기를 만드는 부분</li>
+<li><strong>계란 트레이</strong>: 보통 6~7개의 계란을 올릴 수 있는 받침대</li>
+<li><strong>투명 뚜껑</strong>: 증기가 새지 않도록 밀폐하는 역할</li>
+<li><strong>계량컵</strong>: 익힘 정도(반숙·완숙·수란 등)에 맞는 물의 양을 측정하는 도구</li>
+<li><strong>계란 구멍 뚫개(핀)</strong>: 계란 껍질이 잘 까지도록 작은 구멍을 내는 도구</li>
+</ul>
+<p>작동 원리는 간단합니다. 가열판에 부은 물이 끓으면서 증기가 발생하고, 이 증기가 계란을 일정한 온도에서 골고루 익혀줍니다. 물이 모두 증발하면 본체 온도가 급격히 올라가는데, 이때 <strong>온도 센서가 자동으로 전원을 차단</strong>하거나 알림음을 울리는 방식입니다.</p>
+<h2 id="_2">익힘 정도에 따른 물 양 조절이 핵심</h2>
+<p>계란찜기 사용에서 가장 중요한 원리는 <strong>"물의 양 = 익힘 시간"</strong> 이라는 점입니다. 별도의 타이머 없이 물이 증발하는 시간으로 익힘 정도를 결정하는 구조이기 때문입니다.</p>
+<p>일반적인 가이드라인은 다음과 같습니다(제품에 따라 차이가 있을 수 있음).</p>
+<table>
+<thead>
+<tr>
+<th>조리 모드</th>
+<th>권장 물 양(계량컵 기준)</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>반숙</strong></td>
+<td>약 30~50ml</td>
+<td>노른자가 흐르는 부드러운 식감</td>
+</tr>
+<tr>
+<td><strong>중숙</strong></td>
+<td>약 50~70ml</td>
+<td>노른자가 살짝 굳은 상태</td>
+</tr>
+<tr>
+<td><strong>완숙</strong></td>
+<td>약 70~90ml</td>
+<td>노른자까지 완전히 익은 상태</td>
+</tr>
+<tr>
+<td><strong>수란</strong></td>
+<td>별도 트레이 + 소량의 물</td>
+<td>껍질을 깬 계란을 트레이에 부어 조리</td>
+</tr>
+<tr>
+<td><strong>계란찜</strong></td>
+<td>제품별 설명서 참고</td>
+<td>풀어둔 계란물에 물·소금·다시마 육수 등 첨가</td>
+</tr>
+</tbody>
+</table>
+<p>대부분의 계란찜기 계량컵에는 모드별 눈금(예: SOFT/MEDIUM/HARD)이 표시되어 있어 그대로 따라 부으면 됩니다.</p>
+<h2 id="_3">단계별 사용법</h2>
+<h3 id="1">1. 계란 준비하기</h3>
+<p>냉장고에서 막 꺼낸 계란보다 <strong>실온에 10분 정도 두었다가</strong> 사용하는 것이 좋습니다. 차가운 계란은 갑작스러운 온도 변화로 껍질이 갈라질 수 있기 때문입니다.</p>
+<p>또한 동봉된 <strong>핀으로 계란의 둥근 쪽(공기집이 있는 부분)에 작은 구멍을 뚫어주세요</strong>. 이는 두 가지 효과가 있습니다.</p>
+<ul>
+<li>가열 시 내부 압력이 빠지면서 껍질이 터지는 것을 방지</li>
+<li>식힌 후 껍질을 벗길 때 훨씬 잘 까짐</li>
+</ul>
+<h3 id="2">2. 물 붓기</h3>
+<p>본체 가열판에 측정한 물을 부어줍니다. 이때 주의할 점은 <strong>반드시 차가운(또는 실온의) 물을 사용</strong>해야 한다는 것입니다. 뜨거운 물을 부으면 증발 시간이 짧아져 익힘 정도가 달라집니다.</p>
+<h3 id="3">3. 트레이 올리고 계란 배치</h3>
+<p>물을 부은 본체 위에 계란 트레이를 올리고, 구멍 뚫은 면이 위로 향하도록 계란을 세워 놓습니다. 빈 자리가 있어도 무방하지만, 계란 개수가 적을수록 익는 속도가 약간 빨라질 수 있습니다.</p>
+<h3 id="4">4. 뚜껑 덮고 작동</h3>
+<p>투명 뚜껑을 덮고 전원 버튼을 눌러주세요. 대부분의 제품은 7~12분 사이에 조리가 완료되며, <strong>물이 모두 증발하면 자동으로 알림음이 울리거나 전원이 꺼집니다.</strong></p>
+<h3 id="5">5. 즉시 꺼내 찬물에 담그기</h3>
+<p>조리가 끝난 계란은 <strong>곧바로 찬물(또는 얼음물)에 담가 식혀주세요</strong>. 이 과정을 '쇼킹(shocking)'이라고 부르는데, 미국 농무부(USDA)에서도 권장하는 방법입니다. 찬물에 담그면 다음과 같은 이점이 있습니다.</p>
+<ul>
+<li>잔열로 인한 추가 익힘 방지</li>
+<li>계란 흰자와 껍질 사이에 수분이 침투해 껍질이 깔끔하게 분리</li>
+<li>노른자 표면이 회녹색으로 변하는 현상(황화제일철 형성) 억제</li>
+</ul>
+<h2 id="_4">자주 묻는 질문과 실패 원인</h2>
+<h3 id="_5">"껍질이 잘 안 까져요"</h3>
+<p><strong>신선한 계란일수록 껍질이 잘 안 까집니다.</strong> 산란 후 7~10일 정도 지난 계란이 흰자의 pH가 상승해 껍질에서 잘 떨어집니다. 너무 신선한 계란만 가지고 있다면 식초나 소금을 약간 푼 물에 담가 식히는 것도 도움이 됩니다.</p>
+<h3 id="_6">"계란이 자꾸 터져요"</h3>
+<ul>
+<li>핀으로 구멍을 뚫지 않은 경우</li>
+<li>계란에 미세한 금이 이미 가 있던 경우</li>
+<li>가열판 위에 물 없이 작동시킨 경우(고장 원인이 되므로 주의)</li>
+</ul>
+<h3 id="_7">"익힘 정도가 매번 달라요"</h3>
+<p>물을 계량컵으로 정확히 측정하지 않으면 결과가 들쑥날쑥합니다. <strong>눈대중이 아닌 계량컵 눈금을 정확히 맞추는 것</strong>이 일관된 결과의 핵심입니다. 또한 계란 크기(왕란/특란/대란)에 따라 약간의 조정이 필요할 수 있습니다.</p>
+<h2 id="_8">안전한 사용과 청소 관리</h2>
+<p>식품의약품안전처 및 가전제품 안전 가이드에 따르면, 소형 가전제품은 다음과 같은 점을 지켜야 합니다.</p>
+<ul>
+<li><strong>사용 직후 가열판은 매우 뜨거우므로 식힌 뒤 청소</strong>할 것</li>
+<li>본체는 절대 물에 담그지 말고 <strong>젖은 천으로 닦은 후 마른 천으로 마무리</strong></li>
+<li>트레이와 뚜껑은 분리해 미지근한 물로 세척</li>
+<li><strong>수돗물의 미네랄(석회질)이 가열판에 쌓이는 경우</strong>, 식초와 물을 1:2로 섞어 부은 후 한 번 작동시키면 깨끗이 제거됨</li>
+</ul>
+<p>장기간 사용하지 않을 때는 충분히 건조시킨 후 보관해야 곰팡이나 부식을 막을 수 있습니다.</p>
+<h2 id="_9">마치며</h2>
+<p>계란찜기는 단순한 가전처럼 보이지만, <strong>물의 양과 증발 시간이라는 과학적 원리</strong>를 활용한 똑똑한 조리 도구입니다. 처음 한두 번은 익힘 정도를 맞추기 위해 시행착오가 필요할 수 있지만, 자기 입맛에 맞는 물 양을 찾고 나면 매번 일정한 품질의 계란 요리를 즐길 수 있습니다.</p>
+<p>다이어트 식단으로 삶은 계란을 챙겨 먹는 분, 아이 도시락에 계란찜을 자주 활용하는 분, 자취 요리를 간소화하고 싶은 분 모두에게 추천하는 가전이니 위의 가이드를 참고해 안전하고 맛있게 활용해보세요.</p>
+<h2 id="_10">참고 자료</h2>
+<ul>
+<li><a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/eggs/shell-eggs-farm-table">USDA - Shell Eggs from Farm to Table</a></li>
+<li><a href="https://www.incredibleegg.org/cooking-school/how-to/how-to-hard-boil-eggs/">American Egg Board - How to Hard-Boil Eggs</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Egg_as_food">Wikipedia - Egg as food</a></li>
+<li><a href="https://www.foodsafetykorea.go.kr/">식품의약품안전처 - 식품안전나라</a></li>
+<li><a href="https://www.seriouseats.com/the-food-lab-the-hard-boiled-egg-cooked-perfect">Serious Eats - The Food Lab: Perfect Boiled Eggs</a></li>
+</ul>
+  </div>
+
+  <footer class="post-footer">
+    <a href="/" class="back-link">← 목록으로</a>
+  </footer>
+</article>
+
+<script>
+  function toggleCatEdit() {
+    const form = document.getElementById('cat-form');
+    form.classList.toggle('on');
+    if (form.classList.contains('on')) document.getElementById('cat-input').focus();
+    document.getElementById('cat-msg').textContent = '';
+  }
+
+  async function saveCategory(slug) {
+    const cat = document.getElementById('cat-input').value.trim();
+    const msg = document.getElementById('cat-msg');
+    if (!cat) { msg.style.color = '#f87171'; msg.textContent = '카테고리를 입력해 주세요.'; return; }
+
+    msg.style.color = 'var(--muted)'; msg.textContent = '저장 중...';
+    const res = await fetch(`/admin/api/posts/${encodeURIComponent(slug)}/category`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category: cat }),
+    });
+
+    if (res.ok) {
+      msg.style.color = 'var(--green)'; msg.textContent = '✅ 저장됨. 페이지 재로드 중...';
+      setTimeout(() => location.reload(), 1500);
+    } else if (res.status === 401) {
+      msg.style.color = '#f87171'; msg.textContent = '로그인이 필요합니다.';
+    } else {
+      msg.style.color = '#f87171'; msg.textContent = '오류가 발생했습니다.';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('cat-form').classList.contains('on')) {
+      saveCategory('계란찜기-사용법-완벽-가이드-초보자도-실패-없는-계란요리-비법');
+    }
+  });
+</script>
+
+  </main>
+
+  <footer>
+    <p>© Jessica</p>
+  </footer>
+</body>
+</html>

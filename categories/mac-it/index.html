@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mac/IT · Jess Notes</title>
+  <meta name="description" content="생각을 탐험하고, 지식을 발견하는 공간">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --accent: #7c6aff;
+      --accent-light: #a78bfa;
+      --green: #34d399;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-light); text-decoration: none; }
+    a:hover { color: var(--accent); text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15, 17, 23, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    header .inner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    header .logo span { color: var(--accent); }
+
+    header nav a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+    }
+
+    header nav a:hover { color: var(--text); text-decoration: none; }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(124, 106, 255, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+  </style>
+  
+<style>
+  .cat-header { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+  .cat-header .badge { display:inline-flex; align-items:center; background:rgba(124,106,255,.15);
+    border:1px solid rgba(124,106,255,.3); color:var(--accent-light); border-radius:20px;
+    padding:.3rem .9rem; font-size:.8rem; font-weight:600; margin-bottom:1rem; }
+  .cat-header h1 { font-size:1.9rem; font-weight:800; letter-spacing:-.03em; margin-bottom:.4rem; }
+  .cat-header p { color:var(--muted); font-size:.95rem; }
+  .posts-grid { display:flex; flex-direction:column; gap:1.2rem; }
+  .post-card { background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    padding:1.6rem; transition:border-color .2s,transform .2s; }
+  .post-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .post-card .meta { display:flex; align-items:center; gap:.75rem; margin-bottom:.75rem; flex-wrap:wrap; }
+  .post-card .date { color:var(--muted); font-size:.82rem; }
+  .post-card h2 { font-size:1.25rem; font-weight:700; letter-spacing:-.02em; margin-bottom:.5rem; line-height:1.4; }
+  .post-card h2 a { color:var(--text); }
+  .post-card h2 a:hover { color:var(--accent-light); text-decoration:none; }
+  .post-card .excerpt { color:var(--muted); font-size:.92rem; line-height:1.6; }
+  .cat-nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:2rem; }
+  .cat-link { padding:.4rem .9rem; border-radius:20px; font-size:.82rem; font-weight:600;
+    background:var(--surface); border:1px solid var(--border); color:var(--muted); text-decoration:none;
+    transition:all .15s; }
+  .cat-link:hover, .cat-link.active { background:rgba(124,106,255,.15); border-color:rgba(124,106,255,.4);
+    color:var(--accent-light); text-decoration:none; }
+</style>
+
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:9px;">
+        <img src="/static/logo.jpg" width="32" height="32" alt="logo" style="border-radius:8px;"/>
+        Jess Notes<span>.</span>
+      </a>
+      <nav>
+        <a href="/">홈</a>
+        <a href="/posts/">글 목록</a>
+        <a href="/admin" style="background:var(--accent);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.75rem;font-weight:600;white-space:nowrap;">✍️</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    
+<div class="cat-header">
+  <div class="badge">📂 카테고리</div>
+  <h1>Mac/IT</h1>
+  <p>총 1개의 글</p>
+</div>
+
+<div class="cat-nav">
+  <a href="/posts/" class="cat-link">전체</a>
+  
+  <a href="/categories/ai/" class="cat-link ">AI</a>
+  
+  <a href="/categories/mac-it/" class="cat-link active">Mac/IT</a>
+  
+  <a href="/categories/개발/" class="cat-link ">개발</a>
+  
+  <a href="/categories/건강/" class="cat-link ">건강</a>
+  
+  <a href="/categories/과학/" class="cat-link ">과학</a>
+  
+  <a href="/categories/기타/" class="cat-link ">기타</a>
+  
+  <a href="/categories/비즈니스/" class="cat-link ">비즈니스</a>
+  
+  <a href="/categories/스포츠/" class="cat-link ">스포츠</a>
+  
+  <a href="/categories/영화/" class="cat-link ">영화</a>
+  
+  <a href="/categories/음악/" class="cat-link ">음악</a>
+  
+</div>
+
+<div class="posts-grid">
+  
+  <article class="post-card">
+    <div class="meta">
+      <span class="date">2025-01-22</span>
+      <span class="tag">Mac</span><span class="tag">macOS</span><span class="tag">초기설정</span><span class="tag">개발환경</span><span class="tag">Homebrew</span>
+    </div>
+    <h2><a href="/posts/mac-초기화-이후-최초-설정-방법-완벽-가이드-개발자도-만족하는-셋업.html">Mac 초기화 이후 최초 설정 방법 완벽 가이드 - 개발자도 만족하는 셋업</a></h2>
+    <p class="excerpt">Mac을 새로 사거나 초기화한 후 무엇부터 설정해야 할지 막막하신가요? 시스템 환경설정부터 개발 환경 구축까지, 따라만 하면 완벽한 Mac을 만들 수 있는 단계별 가이드를 준비했습니다.</p>
+  </article>
+  
+</div>
+
+  </main>
+
+  <footer>
+    <p>© Jessica</p>
+  </footer>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Auto Blog</title>
-  <meta name="description" content="Claude AI가 작성하는 블로그">
+  <title>Jess Notes</title>
+  <meta name="description" content="생각을 탐험하고, 지식을 발견하는 공간">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -95,126 +95,64 @@
   </style>
   
 <style>
-  .hero {
-    text-align: center;
-    padding: 3rem 0 2.5rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2.5rem;
-  }
-
-  .hero h1 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    background: linear-gradient(135deg, var(--text) 40%, var(--accent-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.75rem;
-  }
-
-  .hero p {
-    color: var(--muted);
-    font-size: 1.05rem;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba(52, 211, 153, 0.1);
-    border: 1px solid rgba(52, 211, 153, 0.3);
-    color: var(--green);
-    border-radius: 20px;
-    padding: 0.3rem 0.9rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 1.2rem;
-  }
-
-  .posts-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-
-  .post-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.6rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .post-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  .post-card .meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .post-card .date {
-    color: var(--muted);
-    font-size: 0.82rem;
-  }
-
-  .post-card h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-  }
-
-  .post-card h2 a {
-    color: var(--text);
-  }
-
-  .post-card h2 a:hover {
-    color: var(--accent-light);
-    text-decoration: none;
-  }
-
-  .post-card .excerpt {
-    color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.6;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--muted);
-  }
-
-  .empty-state code {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.8rem 1.4rem;
-    display: block;
-    margin: 1.2rem auto;
-    max-width: 480px;
-    text-align: left;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    color: var(--accent-light);
-  }
+  .hero { text-align:center; padding:3rem 0 2.5rem; border-bottom:1px solid var(--border); margin-bottom:2.5rem; }
+  .hero h1 { font-size:2.4rem; font-weight:800; letter-spacing:-.04em;
+    background:linear-gradient(135deg,var(--text) 40%,var(--accent-light));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:.75rem; }
+  .hero p { color:var(--muted); font-size:1.05rem; }
+  .hero-badge { display:inline-flex; align-items:center; gap:.5rem;
+    background:linear-gradient(135deg,rgba(124,106,255,.18),rgba(52,211,153,.12));
+    border:1px solid rgba(124,106,255,.35); color:var(--accent-light);
+    border-radius:20px; padding:.35rem 1rem; font-size:.78rem; font-weight:700;
+    letter-spacing:.3px; margin-bottom:1.4rem; }
+  .hero-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--green);
+    box-shadow:0 0 6px var(--green); animation:pulse 2s infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+  .search-wrap { margin-bottom:1.2rem; position:relative; }
+  .search-wrap svg { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none; }
+  .search-input { width:100%; padding:11px 16px 11px 42px; background:var(--surface);
+    border:1.5px solid var(--border); border-radius:10px; color:var(--text);
+    font-size:.95rem; outline:none; transition:border-color .2s; }
+  .search-input:focus { border-color:var(--accent); }
+  .search-input::placeholder { color:var(--muted); }
+  .cat-tabs { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.8rem; }
+  .cat-tab { padding:.4rem .95rem; border-radius:20px; font-size:.82rem; font-weight:600; cursor:pointer;
+    background:var(--surface); border:1px solid var(--border); color:var(--muted); transition:all .15s; }
+  .cat-tab:hover { border-color:rgba(124,106,255,.4); color:var(--accent-light); }
+  .cat-tab.active { background:rgba(124,106,255,.15); border-color:rgba(124,106,255,.4); color:var(--accent-light); }
+  .posts-grid { display:flex; flex-direction:column; gap:1.2rem; }
+  .post-card { background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    padding:1.6rem; transition:border-color .2s,transform .2s; }
+  .post-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .post-card .meta { display:flex; align-items:center; gap:.75rem; margin-bottom:.75rem; flex-wrap:wrap; }
+  .post-card .date { color:var(--muted); font-size:.82rem; }
+  .post-card .cat-badge { background:rgba(52,211,153,.1); border:1px solid rgba(52,211,153,.25);
+    color:var(--green); border-radius:12px; padding:.15rem .6rem; font-size:.75rem; font-weight:600; }
+  .post-card .thumb { width:100%; height:160px; object-fit:cover; border-radius:8px;
+    margin-bottom:1rem; border:1px solid var(--border); }
+  .post-card h2 { font-size:1.25rem; font-weight:700; letter-spacing:-.02em; margin-bottom:.5rem; line-height:1.4; }
+  .post-card h2 a { color:var(--text); }
+  .post-card h2 a:hover { color:var(--accent-light); text-decoration:none; }
+  .post-card .excerpt { color:var(--muted); font-size:.92rem; line-height:1.6; }
+  .no-results { text-align:center; padding:4rem 2rem; color:var(--muted); display:none; }
+  .empty-state { text-align:center; padding:4rem 2rem; color:var(--muted); }
+  .empty-state code { background:var(--surface); border:1px solid var(--border); border-radius:6px;
+    padding:.8rem 1.4rem; display:block; margin:1.2rem auto; max-width:480px;
+    text-align:left; font-family:var(--font-mono); font-size:.9rem; color:var(--accent-light); }
 </style>
 
 </head>
 <body>
   <header>
     <div class="inner">
-      <a href="/" class="logo">My Auto Blog<span>.</span></a>
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:9px;">
+        <img src="/static/logo.jpg" width="32" height="32" alt="logo" style="border-radius:8px;"/>
+        Jess Notes<span>.</span>
+      </a>
       <nav>
         <a href="/">홈</a>
+        <a href="/posts/">글 목록</a>
+        <a href="/admin" style="background:var(--accent);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.75rem;font-weight:600;white-space:nowrap;">✍️</a>
       </nav>
     </div>
   </header>
@@ -222,294 +160,289 @@
   <main>
     
 <div class="hero">
-  <div class="badge">✦ Powered by Claude AI</div>
-  <h1>My Auto Blog</h1>
-  <p>Claude AI가 작성하는 블로그</p>
+  <img src="/static/logo.jpg" width="100" height="100" alt="Jess Notes logo" style="border-radius:22px;margin-bottom:1.2rem;box-shadow:0 8px 32px rgba(124,106,255,0.35);"/>
+  <div class="hero-badge"><span class="dot"></span> 새로운 인사이트 · 매일 업데이트</div>
+  <h1>Jess Notes</h1>
+  <p>생각을 탐험하고, 지식을 발견하는 공간</p>
 </div>
 
 
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input class="search-input" id="search" type="text" placeholder="제목으로 검색..." oninput="applyFilter()" />
+  </div>
+
+  <div class="cat-tabs">
+    <button class="cat-tab active" onclick="setCat('all',this)">전체 (19)</button>
+    
+    <button class="cat-tab" onclick="setCat('AI',this)">AI (4)</button>
+    
+    <button class="cat-tab" onclick="setCat('Mac/IT',this)">Mac/IT (1)</button>
+    
+    <button class="cat-tab" onclick="setCat('개발',this)">개발 (4)</button>
+    
+    <button class="cat-tab" onclick="setCat('건강',this)">건강 (1)</button>
+    
+    <button class="cat-tab" onclick="setCat('과학',this)">과학 (1)</button>
+    
+    <button class="cat-tab" onclick="setCat('기타',this)">기타 (3)</button>
+    
+    <button class="cat-tab" onclick="setCat('비즈니스',this)">비즈니스 (1)</button>
+    
+    <button class="cat-tab" onclick="setCat('스포츠',this)">스포츠 (1)</button>
+    
+    <button class="cat-tab" onclick="setCat('영화',this)">영화 (1)</button>
+    
+    <button class="cat-tab" onclick="setCat('음악',this)">음악 (2)</button>
+    
+  </div>
+
   <div class="posts-grid">
     
-    <article class="post-card">
+    <article class="post-card" data-category="기타" data-title="테니스 게임 룰 완벽 가이드: 초보자를 위한 점수 계산부터 경기 진행까지">
+      
+      <img src="/images/테니스-게임-룰-완벽-가이드-초보자를-위한-점수-계산부터-경기-진행까지.jpg" alt="테니스 게임 룰 완벽 가이드: 초보자를 위한 점수 계산부터 경기 진행까지" class="thumb" />
+      
+      <div class="meta">
+        <span class="date">2026-05-05 10:32</span>
+        <a href="/categories/기타/" class="cat-badge">기타</a>
+        <span class="tag">테니스</span><span class="tag">스포츠규칙</span><span class="tag">테니스입문</span><span class="tag">점수계산</span><span class="tag">운동</span>
+      </div>
+      <h2><a href="/posts/테니스-게임-룰-완벽-가이드-초보자를-위한-점수-계산부터-경기-진행까지.html">테니스 게임 룰 완벽 가이드: 초보자를 위한 점수 계산부터 경기 진행까지</a></h2>
+      <p class="excerpt">테니스를 처음 접하는 사람들이 가장 어려워하는 점수 계산법과 경기 규칙을 체계적으로 정리했습니다. 15-30-40부터 타이브레이크까지, 테니스의 모든 기본 룰을 한 번에 익혀보세요.</p>
+    </article>
+    
+    <article class="post-card" data-category="영화" data-title="스티븐 스필버그 영화 마스터하기: 단계별 감상 가이드와 데이터 분석 튜토리얼">
+      
+      <img src="/images/스티븐-스필버그-영화-마스터하기-단계별-감상-가이드와-데이터-분석-튜토리얼.jpg" alt="스티븐 스필버그 영화 마스터하기: 단계별 감상 가이드와 데이터 분석 튜토리얼" class="thumb" />
+      
+      <div class="meta">
+        <span class="date">2026-05-05 09:47</span>
+        <a href="/categories/영화/" class="cat-badge">영화</a>
+        <span class="tag">스티븐스필버그</span><span class="tag">영화감상</span><span class="tag">데이터분석</span><span class="tag">Python</span><span class="tag">영화추천</span>
+      </div>
+      <h2><a href="/posts/스티븐-스필버그-영화-마스터하기-단계별-감상-가이드와-데이터-분석-튜토리얼.html">스티븐 스필버그 영화 마스터하기: 단계별 감상 가이드와 데이터 분석 튜토리얼</a></h2>
+      <p class="excerpt">할리우드 최고의 흥행 감독 스티븐 스필버그의 필모그래피를 체계적으로 감상하는 방법과, Python을 활용해 그의 영화 데이터를 직접 분석하는 방법을 단계별로 안내합니다. 영화 애호가와 데이터 분석 입문자 모두에게 유용한 실용 가이드입니다.</p>
+    </article>
+    
+    <article class="post-card" data-category="음악" data-title="베토벤 교향곡 전곡 완벽 정리: 1번부터 9번까지의 모든 것">
+      
+      <div class="meta">
+        <span class="date">2026-05-05 09:17</span>
+        <a href="/categories/음악/" class="cat-badge">음악</a>
+        <span class="tag">베토벤</span><span class="tag">클래식음악</span><span class="tag">교향곡</span><span class="tag">음악사</span><span class="tag">고전음악감상</span>
+      </div>
+      <h2><a href="/posts/베토벤-교향곡-전곡-완벽-정리-1번부터-9번까지의-모든-것.html">베토벤 교향곡 전곡 완벽 정리: 1번부터 9번까지의 모든 것</a></h2>
+      <p class="excerpt">고전주의에서 낭만주의로 가는 다리를 놓은 베토벤의 9개 교향곡을 한눈에 살펴봅니다. 각 작품의 작곡 배경, 음악적 특징, 그리고 왜 오늘날까지 사랑받는지 그 이유를 정리했습니다.</p>
+    </article>
+    
+    <article class="post-card" data-category="스포츠" data-title="골프 퍼팅 잘하는 법: 스코어를 줄이는 과학적 접근">
+      
+      <div class="meta">
+        <span class="date">2026-05-05 08:44</span>
+        <a href="/categories/스포츠/" class="cat-badge">스포츠</a>
+        <span class="tag">골프</span><span class="tag">퍼팅</span><span class="tag">골프팁</span><span class="tag">스코어관리</span><span class="tag">골프레슨</span>
+      </div>
+      <h2><a href="/posts/골프-퍼팅-잘하는-법-스코어를-줄이는-과학적-접근.html">골프 퍼팅 잘하는 법: 스코어를 줄이는 과학적 접근</a></h2>
+      <p class="excerpt">골프 라운드의 약 40%를 차지하는 퍼팅, 어떻게 하면 더 잘할 수 있을까요? 단순한 감각이 아닌 물리학과 생체역학에 기반한 과학적 퍼팅 방법을 소개합니다.</p>
+    </article>
+    
+    <article class="post-card" data-category="기타" data-title="계란찜기 완벽 사용법 - 부드럽고 촉촉한 계란찜 만드는 모든 방법">
+      
+      <div class="meta">
+        <span class="date">2026-05-05 10:36</span>
+        <a href="/categories/기타/" class="cat-badge">기타</a>
+        <span class="tag">계란찜</span><span class="tag">요리법</span><span class="tag">주방가전</span><span class="tag">계란요리</span><span class="tag">자취요리</span>
+      </div>
+      <h2><a href="/posts/계란찜기-완벽-사용법-부드럽고-촉촉한-계란찜-만드는-모든-방법.html">계란찜기 완벽 사용법 - 부드럽고 촉촉한 계란찜 만드는 모든 방법</a></h2>
+      <p class="excerpt">집집마다 하나쯤 있는 계란찜기, 제대로 활용하고 계신가요? 전기 계란찜기부터 전자레인지용, 냄비를 이용한 전통 방식까지 부드럽고 매끄러운 계란찜을 만드는 완벽한 사용법을 정리했습니다.</p>
+    </article>
+    
+    <article class="post-card" data-category="기타" data-title="계란찜기 사용법 완벽 가이드: 초보자도 실패 없는 계란요리 비법">
+      
+      <div class="meta">
+        <span class="date">2026-05-05 10:36</span>
+        <a href="/categories/기타/" class="cat-badge">기타</a>
+        <span class="tag">계란찜기</span><span class="tag">주방가전</span><span class="tag">요리팁</span><span class="tag">계란요리</span><span class="tag">생활정보</span>
+      </div>
+      <h2><a href="/posts/계란찜기-사용법-완벽-가이드-초보자도-실패-없는-계란요리-비법.html">계란찜기 사용법 완벽 가이드: 초보자도 실패 없는 계란요리 비법</a></h2>
+      <p class="excerpt">계란찜기 하나면 삶은 계란부터 수란, 계란찜까지 완벽하게 만들 수 있습니다. 이 글에서는 계란찜기의 기본 원리부터 단계별 사용법, 실패하지 않는 꿀팁까지 자세히 안내합니다.</p>
+    </article>
+    
+    <article class="post-card" data-category="개발" data-title="ai 에이전트를 위한 mcp 서버 만드는 방법: 처음부터 끝까지 완벽 가이드">
+      
       <div class="meta">
         <span class="date">2025-01-27</span>
-        
-        <span class="tag">MCP</span>
-        
-        <span class="tag">AI에이전트</span>
-        
-        <span class="tag">Claude</span>
-        
-        <span class="tag">Anthropic</span>
-        
-        <span class="tag">LLM개발</span>
-        
+        <a href="/categories/개발/" class="cat-badge">개발</a>
+        <span class="tag">MCP</span><span class="tag">AI에이전트</span><span class="tag">Claude</span><span class="tag">Anthropic</span><span class="tag">LLM개발</span>
       </div>
       <h2><a href="/posts/agent-mcp-만드는-방법.html">AI 에이전트를 위한 MCP 서버 만드는 방법: 처음부터 끝까지 완벽 가이드</a></h2>
-      
       <p class="excerpt">Anthropic이 공개한 MCP(Model Context Protocol)는 AI 에이전트가 외부 도구와 데이터를 표준화된 방식으로 사용할 수 있게 해주는 프로토콜입니다. 이 글에서는 MCP의 핵심 개념부터 직접 서버를 구현하고 Claude Desktop에 연결하는 실전 단계까지 차근차근 알아봅니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="개발" data-title="테스트(test)란 무엇인가: 종류, 목적, 그리고 효과적인 활용법">
+      
       <div class="meta">
         <span class="date">2025-01-27</span>
-        
-        <span class="tag">테스트</span>
-        
-        <span class="tag">소프트웨어테스트</span>
-        
-        <span class="tag">학습법</span>
-        
-        <span class="tag">품질관리</span>
-        
-        <span class="tag">검증</span>
-        
+        <a href="/categories/개발/" class="cat-badge">개발</a>
+        <span class="tag">테스트</span><span class="tag">소프트웨어테스트</span><span class="tag">학습법</span><span class="tag">품질관리</span><span class="tag">검증</span>
       </div>
       <h2><a href="/posts/테스트-test-란-무엇인가-종류-목적-그리고-효과적인-활용법.html">테스트(Test)란 무엇인가: 종류, 목적, 그리고 효과적인 활용법</a></h2>
-      
       <p class="excerpt">우리는 일상에서 '테스트'라는 단어를 자주 사용하지만, 그 의미와 종류는 생각보다 다양합니다. 이 글에서는 테스트의 정의부터 분야별 종류, 그리고 효과적으로 활용하는 방법까지 체계적으로 살펴봅니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="건강" data-title="배탈이 났을 때 꼭 알아야 할 대처법과 음식 가이드">
+      
       <div class="meta">
         <span class="date">2025-01-27</span>
-        
-        <span class="tag">배탈</span>
-        
-        <span class="tag">설사</span>
-        
-        <span class="tag">건강관리</span>
-        
-        <span class="tag">식중독</span>
-        
-        <span class="tag">응급처치</span>
-        
+        <a href="/categories/건강/" class="cat-badge">건강</a>
+        <span class="tag">배탈</span><span class="tag">설사</span><span class="tag">건강관리</span><span class="tag">식중독</span><span class="tag">응급처치</span>
       </div>
       <h2><a href="/posts/배탈이-났을-때-꼭-알아야-할-대처법과-음식-가이드.html">배탈이 났을 때 꼭 알아야 할 대처법과 음식 가이드</a></h2>
-      
       <p class="excerpt">갑작스러운 배탈, 무엇을 먹고 무엇을 피해야 할까요? 의학적 근거를 바탕으로 배탈의 원인부터 회복을 돕는 식이요법, 병원에 가야 할 시점까지 꼼꼼하게 정리했습니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="과학" data-title="msp(미세스플래시파우더) 만드는 방법과 화학 실험의 기초 이해">
+      
       <div class="meta">
         <span class="date">2025-01-27</span>
-        
-        <span class="tag">MSP</span>
-        
-        <span class="tag">화학실험</span>
-        
-        <span class="tag">제조방법</span>
-        
-        <span class="tag">실험실안전</span>
-        
-        <span class="tag">화학기초</span>
-        
+        <a href="/categories/과학/" class="cat-badge">과학</a>
+        <span class="tag">MSP</span><span class="tag">화학실험</span><span class="tag">제조방법</span><span class="tag">실험실안전</span><span class="tag">화학기초</span>
       </div>
       <h2><a href="/posts/msp-미세스플래시파우더-만드는-방법과-화학-실험의-기초-이해.html">MSP(미세스플래시파우더) 만드는 방법과 화학 실험의 기초 이해</a></h2>
-      
       <p class="excerpt">MSP는 화학 교육과 실험에서 자주 등장하는 물질로, 정확한 제조 방법과 안전 수칙을 이해하는 것이 중요합니다. 이 글에서는 MSP의 정의부터 제조 과정, 활용 분야까지 체계적으로 살펴봅니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="비즈니스" data-title="msp 만드는 방법 완벽 가이드 - 매니지드 서비스 프로바이더 창업 단계별 전략">
+      
       <div class="meta">
         <span class="date">2025-01-23</span>
-        
-        <span class="tag">MSP</span>
-        
-        <span class="tag">매니지드서비스</span>
-        
-        <span class="tag">IT창업</span>
-        
-        <span class="tag">클라우드비즈니스</span>
-        
-        <span class="tag">B2B서비스</span>
-        
+        <a href="/categories/비즈니스/" class="cat-badge">비즈니스</a>
+        <span class="tag">MSP</span><span class="tag">매니지드서비스</span><span class="tag">IT창업</span><span class="tag">클라우드비즈니스</span><span class="tag">B2B서비스</span>
       </div>
       <h2><a href="/posts/msp-만드는-방법-완벽-가이드-매니지드-서비스-프로바이더-창업-단계별-전략.html">MSP 만드는 방법 완벽 가이드 - 매니지드 서비스 프로바이더 창업 단계별 전략</a></h2>
-      
       <p class="excerpt">클라우드와 디지털 전환 시대에 가장 주목받는 비즈니스 모델 중 하나인 MSP(Managed Service Provider) 창업 방법을 단계별로 알아봅니다. 시장 분석부터 서비스 설계, 가격 책정, 고객 확보까지 실무 중심의 정보를 제공합니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="음악" data-title="콜드플레이(coldplay) 완벽 가이드: 영국 록 밴드의 역사와 음악적 여정">
+      
       <div class="meta">
         <span class="date">2025-01-22</span>
-        
-        <span class="tag">콜드플레이</span>
-        
-        <span class="tag">Coldplay</span>
-        
-        <span class="tag">록밴드</span>
-        
-        <span class="tag">영국음악</span>
-        
-        <span class="tag">음악역사</span>
-        
+        <a href="/categories/음악/" class="cat-badge">음악</a>
+        <span class="tag">콜드플레이</span><span class="tag">Coldplay</span><span class="tag">록밴드</span><span class="tag">영국음악</span><span class="tag">음악역사</span>
       </div>
       <h2><a href="/posts/콜드플레이-coldplay-완벽-가이드-영국-록-밴드의-역사와-음악적-여정.html">콜드플레이(Coldplay) 완벽 가이드: 영국 록 밴드의 역사와 음악적 여정</a></h2>
-      
       <p class="excerpt">1996년 런던 대학교에서 시작된 작은 밴드가 어떻게 21세기를 대표하는 글로벌 록 밴드가 되었을까요? 콜드플레이의 결성부터 최신 투어까지, 그들의 음악적 진화와 주요 업적을 사실에 기반해 정리했습니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="AI" data-title="mcp(model context protocol) 완벽 가이드: ai와 외부 세계를 연결하는 표준 프로토콜">
+      
       <div class="meta">
         <span class="date">2025-01-22</span>
-        
-        <span class="tag">MCP</span>
-        
-        <span class="tag">AI</span>
-        
-        <span class="tag">Anthropic</span>
-        
-        <span class="tag">Claude</span>
-        
-        <span class="tag">개발자도구</span>
-        
+        <a href="/categories/ai/" class="cat-badge">AI</a>
+        <span class="tag">MCP</span><span class="tag">AI</span><span class="tag">Anthropic</span><span class="tag">Claude</span><span class="tag">개발자도구</span>
       </div>
       <h2><a href="/posts/mcp-model-context-protocol-완벽-가이드-ai와-외부-세계를-연결하는-표준-프로토콜.html">MCP(Model Context Protocol) 완벽 가이드: AI와 외부 세계를 연결하는 표준 프로토콜</a></h2>
-      
       <p class="excerpt">Anthropic이 공개한 MCP는 AI 모델이 외부 데이터와 도구에 안전하게 접근할 수 있도록 돕는 개방형 표준입니다. 이 글에서는 MCP의 개념, 작동 원리, 실제 활용 사례까지 체계적으로 정리합니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="Mac/IT" data-title="mac 초기화 이후 최초 설정 방법 완벽 가이드 - 개발자도 만족하는 셋업">
+      
       <div class="meta">
         <span class="date">2025-01-22</span>
-        
-        <span class="tag">Mac</span>
-        
-        <span class="tag">macOS</span>
-        
-        <span class="tag">초기설정</span>
-        
-        <span class="tag">개발환경</span>
-        
-        <span class="tag">Homebrew</span>
-        
+        <a href="/categories/mac-it/" class="cat-badge">Mac/IT</a>
+        <span class="tag">Mac</span><span class="tag">macOS</span><span class="tag">초기설정</span><span class="tag">개발환경</span><span class="tag">Homebrew</span>
       </div>
       <h2><a href="/posts/mac-초기화-이후-최초-설정-방법-완벽-가이드-개발자도-만족하는-셋업.html">Mac 초기화 이후 최초 설정 방법 완벽 가이드 - 개발자도 만족하는 셋업</a></h2>
-      
       <p class="excerpt">Mac을 새로 사거나 초기화한 후 무엇부터 설정해야 할지 막막하신가요? 시스템 환경설정부터 개발 환경 구축까지, 따라만 하면 완벽한 Mac을 만들 수 있는 단계별 가이드를 준비했습니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="개발" data-title="테스트(test)란 무엇인가? 종류와 효과적인 활용법 완벽 가이드">
+      
       <div class="meta">
         <span class="date">2025-01-21</span>
-        
-        <span class="tag">테스트</span>
-        
-        <span class="tag">소프트웨어테스트</span>
-        
-        <span class="tag">학습법</span>
-        
-        <span class="tag">품질관리</span>
-        
-        <span class="tag">자기계발</span>
-        
+        <a href="/categories/개발/" class="cat-badge">개발</a>
+        <span class="tag">테스트</span><span class="tag">소프트웨어테스트</span><span class="tag">학습법</span><span class="tag">품질관리</span><span class="tag">자기계발</span>
       </div>
       <h2><a href="/posts/테스트-test-란-무엇인가-종류와-효과적인-활용법-완벽-가이드.html">테스트(Test)란 무엇인가? 종류와 효과적인 활용법 완벽 가이드</a></h2>
-      
       <p class="excerpt">테스트는 단순히 시험을 보는 행위를 넘어 품질을 검증하고 학습을 강화하는 핵심 도구입니다. 이 글에서는 테스트의 정의, 다양한 종류, 그리고 실생활과 업무에서 효과적으로 활용하는 방법을 사실에 근거하여 알아봅니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="AI" data-title="mcp(model context protocol)란? ai와 데이터를 연결하는 새로운 표준">
+      
       <div class="meta">
         <span class="date">2025-01-21</span>
-        
-        <span class="tag">MCP</span>
-        
-        <span class="tag">AI</span>
-        
-        <span class="tag">Anthropic</span>
-        
-        <span class="tag">Claude</span>
-        
-        <span class="tag">LLM</span>
-        
+        <a href="/categories/ai/" class="cat-badge">AI</a>
+        <span class="tag">MCP</span><span class="tag">AI</span><span class="tag">Anthropic</span><span class="tag">Claude</span><span class="tag">LLM</span>
       </div>
       <h2><a href="/posts/mcp-model-context-protocol-란-ai와-데이터를-연결하는-새로운-표준.html">MCP(Model Context Protocol)란? AI와 데이터를 연결하는 새로운 표준</a></h2>
-      
       <p class="excerpt">Anthropic이 2024년 11월 공개한 MCP는 AI 모델과 외부 데이터 소스를 연결하는 개방형 표준 프로토콜입니다. 이 글에서는 MCP의 작동 원리, 핵심 구성 요소, 그리고 실무에서 활용할 수 있는 방법을 자세히 알아봅니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="AI" data-title="claude api 토큰 절약하는 7가지 실전 전략: 비용을 50% 줄이는 방법">
+      
       <div class="meta">
         <span class="date">2025-01-21</span>
-        
-        <span class="tag">Claude API</span>
-        
-        <span class="tag">토큰절약</span>
-        
-        <span class="tag">LLM</span>
-        
-        <span class="tag">AI개발</span>
-        
-        <span class="tag">프롬프트엔지니어링</span>
-        
+        <a href="/categories/ai/" class="cat-badge">AI</a>
+        <span class="tag">Claude API</span><span class="tag">토큰절약</span><span class="tag">LLM</span><span class="tag">AI개발</span><span class="tag">프롬프트엔지니어링</span>
       </div>
       <h2><a href="/posts/claude-api-토큰-절약하는-7가지-실전-전략-비용을-50-줄이는-방법.html">Claude API 토큰 절약하는 7가지 실전 전략: 비용을 50% 줄이는 방법</a></h2>
-      
       <p class="excerpt">Claude API를 사용하면서 토큰 비용이 부담스러우셨나요? 이 글에서는 프롬프트 캐싱부터 컨텍스트 최적화까지, 실제로 효과가 입증된 토큰 절약 전략 7가지를 자세히 알려드립니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="AI" data-title="claude api 토큰 절약하는 7가지 실전 방법: 비용을 절반으로 줄이는 전략">
+      
       <div class="meta">
         <span class="date">2025-01-21</span>
-        
-        <span class="tag">Claude API</span>
-        
-        <span class="tag">토큰절약</span>
-        
-        <span class="tag">LLM최적화</span>
-        
-        <span class="tag">AI비용관리</span>
-        
-        <span class="tag">프롬프트엔지니어링</span>
-        
+        <a href="/categories/ai/" class="cat-badge">AI</a>
+        <span class="tag">Claude API</span><span class="tag">토큰절약</span><span class="tag">LLM최적화</span><span class="tag">AI비용관리</span><span class="tag">프롬프트엔지니어링</span>
       </div>
       <h2><a href="/posts/claude-api-토큰-절약하는-7가지-실전-방법-비용을-절반으로-줄이는-전략.html">Claude API 토큰 절약하는 7가지 실전 방법: 비용을 절반으로 줄이는 전략</a></h2>
-      
       <p class="excerpt">Claude API를 사용할 때 토큰 비용은 빠르게 누적됩니다. 프롬프트 최적화부터 프롬프트 캐싱, 모델 선택 전략까지 실무에서 검증된 토큰 절약 방법을 정리했습니다.</p>
-      
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-category="개발" data-title="agent mcp 만드는 방법: 처음부터 끝까지 따라하는 실전 가이드">
+      
       <div class="meta">
         <span class="date">2025-01-21</span>
-        
-        <span class="tag">MCP</span>
-        
-        <span class="tag">AIAgent</span>
-        
-        <span class="tag">ModelContextProtocol</span>
-        
-        <span class="tag">Anthropic</span>
-        
-        <span class="tag">Claude</span>
-        
+        <a href="/categories/개발/" class="cat-badge">개발</a>
+        <span class="tag">MCP</span><span class="tag">AIAgent</span><span class="tag">ModelContextProtocol</span><span class="tag">Anthropic</span><span class="tag">Claude</span>
       </div>
       <h2><a href="/posts/agent-mcp-만드는-방법-처음부터-끝까지-따라하는-실전-가이드.html">Agent MCP 만드는 방법: 처음부터 끝까지 따라하는 실전 가이드</a></h2>
-      
       <p class="excerpt">AI 에이전트를 더 강력하게 만들어주는 MCP(Model Context Protocol) 서버를 직접 구축하는 방법을 단계별로 알아봅니다. 기본 개념부터 실제 코드 작성, 클라이언트 연동까지 실무에 바로 적용할 수 있는 내용을 정리했습니다.</p>
-      
     </article>
     
   </div>
+  <div class="no-results" id="no-results">검색 결과가 없습니다.</div>
+
+  <script>
+    let currentCat = 'all';
+    function setCat(cat, el) {
+      currentCat = cat;
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      applyFilter();
+    }
+    function applyFilter() {
+      const q = document.getElementById('search').value.toLowerCase();
+      let n = 0;
+      document.querySelectorAll('.post-card').forEach(c => {
+        const ok = (currentCat === 'all' || c.dataset.category === currentCat)
+                && (!q || c.dataset.title.includes(q));
+        c.style.display = ok ? '' : 'none';
+        if (ok) n++;
+      });
+      document.getElementById('no-results').style.display = n === 0 ? 'block' : 'none';
+    }
+  </script>
 
 
   </main>
 
   <footer>
-    <p>© Jessica · Powered by <strong>Claude AI</strong> &amp; Auto Blog</p>
+    <p>© Jessica</p>
   </footer>
 </body>
 </html>

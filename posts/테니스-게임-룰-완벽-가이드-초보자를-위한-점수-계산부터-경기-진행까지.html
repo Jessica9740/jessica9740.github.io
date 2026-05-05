@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>테니스 게임 룰 완벽 가이드: 초보자를 위한 점수 계산부터 경기 진행까지 — Jess Notes</title>
+  <meta name="description" content="테니스를 처음 접하는 사람들이 가장 어려워하는 점수 계산법과 경기 규칙을 체계적으로 정리했습니다. 15-30-40부터 타이브레이크까지, 테니스의 모든 기본 룰을 한 번에 익혀보세요.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --accent: #7c6aff;
+      --accent-light: #a78bfa;
+      --green: #34d399;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-light); text-decoration: none; }
+    a:hover { color: var(--accent); text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15, 17, 23, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    header .inner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    header .logo span { color: var(--accent); }
+
+    header nav a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+    }
+
+    header nav a:hover { color: var(--text); text-decoration: none; }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(124, 106, 255, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+  </style>
+  
+<style>
+  .post-header {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .post-header .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-header .date {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .post-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .post-header .excerpt {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  .post-content {
+    max-width: 720px;
+  }
+
+  .post-content h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 2.5rem 0 1rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: var(--text);
+  }
+
+  .post-content p {
+    margin-bottom: 1.2rem;
+    color: #cdd6e8;
+    line-height: 1.85;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 0.75rem 0 1.2rem 1.5rem;
+    color: #cdd6e8;
+  }
+
+  .post-content li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+
+  .post-content strong { color: var(--text); }
+
+  .post-content code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.87em;
+    color: var(--accent-light);
+  }
+
+  .post-content pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+  }
+
+  .post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .post-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1.2rem;
+    margin: 1.5rem 0;
+    background: rgba(124, 106, 255, 0.07);
+    border-radius: 0 6px 6px 0;
+    color: var(--muted);
+  }
+
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+
+  .post-content th, .post-content td {
+    border: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    text-align: left;
+  }
+
+  .post-content th {
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover { color: var(--accent-light); text-decoration: none; }
+
+  .post-image { width:100%; max-height:420px; object-fit:cover; border-radius:12px;
+    margin-bottom:2.5rem; border:1px solid var(--border); }
+
+  .post-content .references { margin-top:2.5rem; padding:1.5rem; background:var(--surface);
+    border:1px solid var(--border); border-radius:10px; }
+  .post-content .references h2 { font-size:1.1rem; margin-bottom:1rem;
+    border-bottom:1px solid var(--border); padding-bottom:.5rem; }
+  .post-content .references ul { margin-left:1.2rem; }
+  .post-content .references li { margin-bottom:.5rem; font-size:.9rem; }
+  .post-content .references a { color:var(--accent-light); word-break:break-all; }
+
+  .cat-edit-wrap { display:inline-flex; align-items:center; gap:.4rem; }
+  .cat-edit-btn { background:none; border:none; cursor:pointer; color:var(--muted);
+    font-size:.75rem; padding:.1rem .35rem; border-radius:4px; transition:color .15s; }
+  .cat-edit-btn:hover { color:var(--accent-light); }
+  .cat-edit-form { display:none; align-items:center; gap:.4rem; }
+  .cat-edit-form.on { display:inline-flex; }
+  .cat-edit-input { background:var(--surface); border:1.5px solid var(--accent);
+    border-radius:6px; color:var(--text); font-size:.8rem; padding:.25rem .6rem;
+    outline:none; width:120px; }
+  .cat-edit-save { background:var(--accent); color:#fff; border:none; border-radius:6px;
+    font-size:.78rem; font-weight:600; padding:.25rem .7rem; cursor:pointer; }
+  .cat-edit-save:hover { background:#6356d4; }
+  .cat-edit-cancel { background:none; border:none; color:var(--muted); font-size:.78rem;
+    cursor:pointer; padding:.25rem .4rem; }
+  .cat-edit-cancel:hover { color:var(--text); }
+  .cat-msg { font-size:.78rem; margin-left:.4rem; }
+</style>
+
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:9px;">
+        <img src="/static/logo.jpg" width="32" height="32" alt="logo" style="border-radius:8px;"/>
+        Jess Notes<span>.</span>
+      </a>
+      <nav>
+        <a href="/">홈</a>
+        <a href="/posts/">글 목록</a>
+        <a href="/admin" style="background:var(--accent);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.75rem;font-weight:600;white-space:nowrap;">✍️</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    
+<article>
+  <header class="post-header">
+    <div class="meta">
+      <span class="date">2026-05-05 10:32</span>
+      
+      <div class="cat-edit-wrap">
+        <a href="/categories/기타/" id="cat-badge" style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--green);border-radius:12px;padding:.15rem .6rem;font-size:.75rem;font-weight:600;text-decoration:none;">기타</a>
+        <button class="cat-edit-btn" onclick="toggleCatEdit()" title="카테고리 변경">✏️</button>
+        <span class="cat-edit-form" id="cat-form">
+          <input class="cat-edit-input" id="cat-input" value="기타" placeholder="카테고리 입력" />
+          <button class="cat-edit-save" onclick="saveCategory('테니스-게임-룰-완벽-가이드-초보자를-위한-점수-계산부터-경기-진행까지')">저장</button>
+          <button class="cat-edit-cancel" onclick="toggleCatEdit()">✕</button>
+          <span class="cat-msg" id="cat-msg"></span>
+        </span>
+      </div>
+      
+      
+      <span class="tag">테니스</span>
+      
+      <span class="tag">스포츠규칙</span>
+      
+      <span class="tag">테니스입문</span>
+      
+      <span class="tag">점수계산</span>
+      
+      <span class="tag">운동</span>
+      
+    </div>
+    <h1>테니스 게임 룰 완벽 가이드: 초보자를 위한 점수 계산부터 경기 진행까지</h1>
+    
+    <p class="excerpt">테니스를 처음 접하는 사람들이 가장 어려워하는 점수 계산법과 경기 규칙을 체계적으로 정리했습니다. 15-30-40부터 타이브레이크까지, 테니스의 모든 기본 룰을 한 번에 익혀보세요.</p>
+    
+  </header>
+
+  
+  <img src="/images/테니스-게임-룰-완벽-가이드-초보자를-위한-점수-계산부터-경기-진행까지.jpg" alt="테니스 게임 룰 완벽 가이드: 초보자를 위한 점수 계산부터 경기 진행까지" class="post-image" />
+  
+
+  <div class="post-content">
+    <p>테니스는 전 세계에서 가장 인기 있는 라켓 스포츠 중 하나입니다. 하지만 처음 테니스를 접하는 사람들에게는 "15-30-40"이라는 독특한 점수 체계부터 듀스, 타이브레이크 같은 용어들이 진입 장벽이 되곤 합니다. 이 글에서는 국제테니스연맹(ITF)의 공식 규칙을 바탕으로 테니스의 기본 룰을 체계적으로 정리해드리겠습니다.</p>
+<h2 id="_1">테니스 코트의 기본 구조</h2>
+<p>테니스 경기를 이해하려면 먼저 코트의 구조를 알아야 합니다. <strong>표준 테니스 코트는 길이 23.77m, 폭 8.23m(단식 기준)</strong>이며, 복식의 경우 폭이 10.97m로 넓어집니다.</p>
+<p>코트의 주요 구성 요소는 다음과 같습니다.</p>
+<ul>
+<li><strong>베이스라인(Baseline)</strong>: 코트 양 끝의 가장 안쪽 라인</li>
+<li><strong>서비스라인(Service Line)</strong>: 네트로부터 6.40m 떨어진 라인</li>
+<li><strong>센터 서비스라인</strong>: 서비스 박스를 좌우로 나누는 라인</li>
+<li><strong>싱글스 사이드라인</strong>: 단식 경기에 사용되는 측면 라인</li>
+<li><strong>더블스 사이드라인</strong>: 복식 경기에 사용되는 측면 라인</li>
+<li><strong>네트</strong>: 중앙 높이 0.914m, 양 끝 1.07m</li>
+</ul>
+<p>서브를 넣을 때는 반드시 대각선 방향의 서비스 박스 안에 공이 떨어져야 한다는 점이 중요합니다.</p>
+<h2 id="15-30-40">독특한 점수 체계: 왜 15-30-40일까?</h2>
+<p>테니스의 점수 체계는 다른 스포츠와 매우 다릅니다. 한 게임 내에서 득점은 다음과 같이 표기됩니다.</p>
+<ul>
+<li>0점: <strong>러브(Love)</strong></li>
+<li>1점: <strong>15(피프틴)</strong></li>
+<li>2점: <strong>30(써티)</strong></li>
+<li>3점: <strong>40(포티)</strong></li>
+<li>4점: <strong>게임(Game)</strong></li>
+</ul>
+<p>이 독특한 숫자 체계의 기원에 대해서는 여러 설이 있습니다. 가장 널리 알려진 설은 <strong>중세 프랑스에서 시계 문자판을 이용해 점수를 표시</strong>했다는 것입니다. 시계 바늘이 15분, 30분, 45분으로 이동하는데, 45가 40으로 줄어든 이유는 듀스 상황에서 이어지는 어드밴티지를 시계의 60분 안에 표현하기 위해서라는 설명이 있습니다.</p>
+<h3 id="deuce-advantage">듀스(Deuce)와 어드밴티지(Advantage)</h3>
+<p>양 선수가 모두 3점(40-40)이 되면 <strong>듀스</strong> 상황이 됩니다. 듀스에서는 한 선수가 연속으로 2점을 따야 게임을 가져갈 수 있습니다.</p>
+<ul>
+<li>듀스 상태에서 1점을 따면 <strong>어드밴티지(Ad)</strong></li>
+<li>어드밴티지 상태에서 1점을 더 따면 <strong>게임 승리</strong></li>
+<li>어드밴티지 상태에서 점수를 잃으면 다시 <strong>듀스</strong></li>
+</ul>
+<h2 id="_2">게임, 세트, 매치의 구조</h2>
+<p>테니스 경기는 <strong>포인트 → 게임 → 세트 → 매치</strong>의 계층 구조로 진행됩니다.</p>
+<h3 id="1-game">1. 게임(Game)</h3>
+<p>앞서 설명한 대로 4점을 먼저 따고 2점 차 이상을 만들면 1게임을 획득합니다.</p>
+<h3 id="2-set">2. 세트(Set)</h3>
+<p><strong>6게임을 먼저 따고 상대보다 2게임 이상 앞서면 1세트를 획득</strong>합니다. 예를 들어 6-4, 6-3 같은 스코어는 세트 승리로 인정됩니다. 하지만 5-5가 되면 7-5까지 가야 하고, 6-6이 되면 보통 <strong>타이브레이크</strong>로 결정됩니다.</p>
+<h3 id="3-match">3. 매치(Match)</h3>
+<p>매치는 보통 <strong>3세트 매치(2세트 선취)</strong> 또는 <strong>5세트 매치(3세트 선취)</strong>로 진행됩니다. 그랜드슬램 대회의 남자 단식은 5세트제, 여자 단식은 3세트제로 운영됩니다.</p>
+<h2 id="_3">타이브레이크 규칙</h2>
+<p>6-6 동점 상황에서 진행되는 타이브레이크는 빠른 결판을 위해 도입된 시스템입니다.</p>
+<ul>
+<li><strong>7점을 먼저 따고 2점 이상 앞서야 승리</strong></li>
+<li>6-6이 되면 8-6, 9-7처럼 2점 차가 날 때까지 계속 진행</li>
+<li>첫 서버는 1점 후 교체되며, 이후 2점마다 서브 교체</li>
+<li>6점마다 코트 사이드를 변경</li>
+</ul>
+<p>특히 <strong>그랜드슬램 대회는 2022년부터 마지막 세트에서 6-6 상황 시 10점 타이브레이크</strong>를 통일적으로 적용하고 있습니다.</p>
+<h2 id="_4">서브 규칙: 경기의 시작점</h2>
+<p>서브는 매 게임마다 한 선수가 전담하며, 게임마다 서버가 교대됩니다.</p>
+<h3 id="_5">서브 진행 방식</h3>
+<ol>
+<li><strong>첫 서브는 항상 듀스 코트(오른쪽)에서 시작</strong></li>
+<li>점수마다 좌우 코트를 번갈아 가며 서브</li>
+<li>서브는 <strong>두 번의 기회</strong>가 주어짐</li>
+<li>첫 서브가 실패하면 <strong>세컨드 서브</strong></li>
+<li>두 번 모두 실패하면 <strong>더블 폴트</strong>로 실점</li>
+</ol>
+<h3 id="fault">폴트(Fault)가 되는 경우</h3>
+<ul>
+<li>공이 네트에 걸리는 경우</li>
+<li>공이 정확한 서비스 박스에 들어가지 않는 경우</li>
+<li>서버가 베이스라인을 밟거나 넘는 <strong>풋폴트(Foot Fault)</strong></li>
+</ul>
+<p>서브한 공이 네트를 살짝 스치고 정상적으로 서비스 박스에 들어가면 <strong>렛(Let)</strong>이 선언되어 해당 서브를 다시 합니다.</p>
+<h2 id="_6">일반적인 실점 상황</h2>
+<p>게임 중 다음과 같은 경우에는 점수를 잃습니다.</p>
+<ul>
+<li>공이 코트 라인 바깥에 떨어진 경우(아웃)</li>
+<li>공이 두 번 바운드된 후 친 경우</li>
+<li>네트에 공을 걸친 경우</li>
+<li>공이 한 번 바운드되기 전에 본인 코트 위에서만 친 경우(공중 인터페어)</li>
+<li>라켓이 아닌 신체로 공을 친 경우</li>
+<li>네트나 네트 포스트를 라켓이나 몸으로 건드린 경우</li>
+</ul>
+<h2 id="_7">코트 체인지 규칙</h2>
+<p>선수들은 경기 중 코트 사이드를 바꿔야 합니다.</p>
+<ul>
+<li>매 세트의 <strong>홀수 게임 종료 후</strong>(1, 3, 5게임 등) 코트 변경</li>
+<li>세트 종료 후에도 게임 합계가 홀수면 코트 변경</li>
+<li>타이브레이크에서는 6점마다 코트 변경</li>
+<li>코트 변경 시 <strong>최대 90초간 휴식</strong> 가능</li>
+</ul>
+<h2 id="_8">단식과 복식의 차이</h2>
+<p>복식은 단식과 몇 가지 다른 점이 있습니다.</p>
+<ul>
+<li><strong>코트 폭</strong>이 더블스 사이드라인까지 확장됨(서브 박스 제외)</li>
+<li><strong>서브는 4명이 순서대로 진행</strong></li>
+<li><strong>리시브 순서는 세트 시작 시 정해지며 그 세트 동안 유지</strong></li>
+<li>한 팀은 같은 게임 내에서 두 명이 번갈아 칠 필요 없음(단, 순서대로 서브와 리시브를 해야 함)</li>
+</ul>
+<h2 id="_9">마무리하며</h2>
+<p>테니스 룰은 처음에는 복잡해 보이지만 핵심만 이해하면 누구나 쉽게 즐길 수 있습니다. <strong>포인트는 15-30-40 체계, 게임은 4점 선취, 세트는 6게임 선취, 매치는 2세트 또는 3세트 선취</strong>라는 큰 그림만 기억해도 경기를 충분히 따라갈 수 있습니다.</p>
+<p>직접 경기를 보거나 플레이하다 보면 자연스럽게 익숙해지므로, 이 가이드를 참고삼아 부담 없이 테니스의 세계에 입문해보시기 바랍니다. 다음에 윔블던이나 US 오픈 같은 그랜드슬램 대회를 시청할 때 훨씬 더 풍부하게 즐길 수 있을 것입니다.</p>
+<h2 id="_10">참고 자료</h2>
+<ul>
+<li><a href="https://www.itftennis.com/en/about-us/governance/rules-and-regulations/">International Tennis Federation - Rules of Tennis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Tennis">Wikipedia - Tennis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Tennis_scoring_system">Wikipedia - Tennis Scoring System</a></li>
+<li><a href="https://www.usta.com/en/home/improve/tips-and-instruction/national/tennis-rules.html">USTA - Friend at Court (Rules of Tennis)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Glossary_of_tennis_terms">Wikipedia - Glossary of Tennis Terms</a></li>
+</ul>
+  </div>
+
+  <footer class="post-footer">
+    <a href="/" class="back-link">← 목록으로</a>
+  </footer>
+</article>
+
+<script>
+  function toggleCatEdit() {
+    const form = document.getElementById('cat-form');
+    form.classList.toggle('on');
+    if (form.classList.contains('on')) document.getElementById('cat-input').focus();
+    document.getElementById('cat-msg').textContent = '';
+  }
+
+  async function saveCategory(slug) {
+    const cat = document.getElementById('cat-input').value.trim();
+    const msg = document.getElementById('cat-msg');
+    if (!cat) { msg.style.color = '#f87171'; msg.textContent = '카테고리를 입력해 주세요.'; return; }
+
+    msg.style.color = 'var(--muted)'; msg.textContent = '저장 중...';
+    const res = await fetch(`/admin/api/posts/${encodeURIComponent(slug)}/category`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category: cat }),
+    });
+
+    if (res.ok) {
+      msg.style.color = 'var(--green)'; msg.textContent = '✅ 저장됨. 페이지 재로드 중...';
+      setTimeout(() => location.reload(), 1500);
+    } else if (res.status === 401) {
+      msg.style.color = '#f87171'; msg.textContent = '로그인이 필요합니다.';
+    } else {
+      msg.style.color = '#f87171'; msg.textContent = '오류가 발생했습니다.';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('cat-form').classList.contains('on')) {
+      saveCategory('테니스-게임-룰-완벽-가이드-초보자를-위한-점수-계산부터-경기-진행까지');
+    }
+  });
+</script>
+
+  </main>
+
+  <footer>
+    <p>© Jessica</p>
+  </footer>
+</body>
+</html>
