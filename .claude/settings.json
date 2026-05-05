@@ -1,0 +1,52 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(docker *)",
+      "Bash(python3 *)",
+      "Bash(pip3 *)",
+      "Bash(auto-blog *)",
+      "Bash(ghp-import *)",
+      "Bash(cloudflared *)",
+      "Bash(brew *)",
+      "Bash(curl *)",
+      "Bash(open *)",
+      "Bash(export PATH=*)",
+      "Bash(source *)",
+      "Bash(sleep *)",
+      "Bash(ls *)",
+      "Bash(cat *)"
+    ]
+  },
+  "env": {
+    "PATH": "/Users/jessica/Library/Python/3.9/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // .tool_response.filePath // empty'); echo \"$f\" | grep -qE '/auto-blog/(src/|Dockerfile|docker-compose)' && (cd /Users/jessica/dev/auto-blog && docker compose up -d --build 2>&1 | tail -3) || true",
+            "timeout": 120,
+            "statusMessage": "🐳 Docker 재빌드 중...",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // .tool_response.filePath // empty'); echo \"$f\" | grep -qE '/auto-blog/(content/|config/)' && (export PATH=\"/Users/jessica/Library/Python/3.9/bin:$PATH\" && cd /Users/jessica/dev/auto-blog && auto-blog build 2>&1 | tail -3) || true",
+            "timeout": 30,
+            "statusMessage": "🔨 블로그 빌드 중...",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
