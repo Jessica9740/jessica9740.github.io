@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./output:/app/output
+      - ./content:/app/content
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
+    env_file:
+      - .env

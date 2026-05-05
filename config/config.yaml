@@ -1,0 +1,10 @@
+site:
+  title: "Jess Notes"
+  description: "생각을 탐험하고, 지식을 발견하는 공간"
+  url: "https://Jessica9740.github.io/auto-blog"
+  author: "Jessica"
+  language: "ko"
+
+blog:
+  posts_per_page: 10
+  default_style: "informative"
