@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>골프 퍼팅 잘하는 법: 스코어를 줄이는 과학적 접근 — Jess Notes</title>
+  <meta name="description" content="골프 라운드의 약 40%를 차지하는 퍼팅, 어떻게 하면 더 잘할 수 있을까요? 단순한 감각이 아닌 물리학과 생체역학에 기반한 과학적 퍼팅 방법을 소개합니다.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --accent: #7c6aff;
+      --accent-light: #a78bfa;
+      --green: #34d399;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-light); text-decoration: none; }
+    a:hover { color: var(--accent); text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15, 17, 23, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    header .inner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    header .logo span { color: var(--accent); }
+
+    header nav a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+    }
+
+    header nav a:hover { color: var(--text); text-decoration: none; }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(124, 106, 255, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+  </style>
+  
+<style>
+  .post-header {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .post-header .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-header .date {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .post-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .post-header .excerpt {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  .post-content {
+    max-width: 720px;
+  }
+
+  .post-content h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 2.5rem 0 1rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: var(--text);
+  }
+
+  .post-content p {
+    margin-bottom: 1.2rem;
+    color: #cdd6e8;
+    line-height: 1.85;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 0.75rem 0 1.2rem 1.5rem;
+    color: #cdd6e8;
+  }
+
+  .post-content li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+
+  .post-content strong { color: var(--text); }
+
+  .post-content code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.87em;
+    color: var(--accent-light);
+  }
+
+  .post-content pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+  }
+
+  .post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .post-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1.2rem;
+    margin: 1.5rem 0;
+    background: rgba(124, 106, 255, 0.07);
+    border-radius: 0 6px 6px 0;
+    color: var(--muted);
+  }
+
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+
+  .post-content th, .post-content td {
+    border: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    text-align: left;
+  }
+
+  .post-content th {
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover { color: var(--accent-light); text-decoration: none; }
+
+  .post-image { width:100%; max-height:420px; object-fit:cover; border-radius:12px;
+    margin-bottom:2.5rem; border:1px solid var(--border); }
+
+  .post-content .references { margin-top:2.5rem; padding:1.5rem; background:var(--surface);
+    border:1px solid var(--border); border-radius:10px; }
+  .post-content .references h2 { font-size:1.1rem; margin-bottom:1rem;
+    border-bottom:1px solid var(--border); padding-bottom:.5rem; }
+  .post-content .references ul { margin-left:1.2rem; }
+  .post-content .references li { margin-bottom:.5rem; font-size:.9rem; }
+  .post-content .references a { color:var(--accent-light); word-break:break-all; }
+
+  .cat-edit-wrap { display:inline-flex; align-items:center; gap:.4rem; }
+  .cat-edit-btn { background:none; border:none; cursor:pointer; color:var(--muted);
+    font-size:.75rem; padding:.1rem .35rem; border-radius:4px; transition:color .15s; }
+  .cat-edit-btn:hover { color:var(--accent-light); }
+  .cat-edit-form { display:none; align-items:center; gap:.4rem; }
+  .cat-edit-form.on { display:inline-flex; }
+  .cat-edit-input { background:var(--surface); border:1.5px solid var(--accent);
+    border-radius:6px; color:var(--text); font-size:.8rem; padding:.25rem .6rem;
+    outline:none; width:120px; }
+  .cat-edit-save { background:var(--accent); color:#fff; border:none; border-radius:6px;
+    font-size:.78rem; font-weight:600; padding:.25rem .7rem; cursor:pointer; }
+  .cat-edit-save:hover { background:#6356d4; }
+  .cat-edit-cancel { background:none; border:none; color:var(--muted); font-size:.78rem;
+    cursor:pointer; padding:.25rem .4rem; }
+  .cat-edit-cancel:hover { color:var(--text); }
+  .cat-msg { font-size:.78rem; margin-left:.4rem; }
+</style>
+
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:9px;">
+        <img src="/static/logo.jpg" width="32" height="32" alt="logo" style="border-radius:8px;"/>
+        Jess Notes<span>.</span>
+      </a>
+      <nav>
+        <a href="/">홈</a>
+        <a href="/posts/">글 목록</a>
+        <a href="/admin" style="background:var(--accent);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.75rem;font-weight:600;white-space:nowrap;">✍️</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    
+<article>
+  <header class="post-header">
+    <div class="meta">
+      <span class="date">2026-05-05 08:44</span>
+      
+      <div class="cat-edit-wrap">
+        <a href="/categories/스포츠/" id="cat-badge" style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--green);border-radius:12px;padding:.15rem .6rem;font-size:.75rem;font-weight:600;text-decoration:none;">스포츠</a>
+        <button class="cat-edit-btn" onclick="toggleCatEdit()" title="카테고리 변경">✏️</button>
+        <span class="cat-edit-form" id="cat-form">
+          <input class="cat-edit-input" id="cat-input" value="스포츠" placeholder="카테고리 입력" />
+          <button class="cat-edit-save" onclick="saveCategory('골프-퍼팅-잘하는-법-스코어를-줄이는-과학적-접근')">저장</button>
+          <button class="cat-edit-cancel" onclick="toggleCatEdit()">✕</button>
+          <span class="cat-msg" id="cat-msg"></span>
+        </span>
+      </div>
+      
+      
+      <span class="tag">골프</span>
+      
+      <span class="tag">퍼팅</span>
+      
+      <span class="tag">골프팁</span>
+      
+      <span class="tag">스코어관리</span>
+      
+      <span class="tag">골프레슨</span>
+      
+    </div>
+    <h1>골프 퍼팅 잘하는 법: 스코어를 줄이는 과학적 접근</h1>
+    
+    <p class="excerpt">골프 라운드의 약 40%를 차지하는 퍼팅, 어떻게 하면 더 잘할 수 있을까요? 단순한 감각이 아닌 물리학과 생체역학에 기반한 과학적 퍼팅 방법을 소개합니다.</p>
+    
+  </header>
+
+  
+
+  <div class="post-content">
+    <h2 id="_1">퍼팅이 스코어에 미치는 영향</h2>
+<p>골프에서 퍼팅이 차지하는 비중은 생각보다 훨씬 큽니다. <strong>PGA 투어 통계에 따르면, 한 라운드(72타 기준) 중 평균 28~30회의 퍼팅</strong>이 이루어집니다. 이는 전체 스코어의 약 40%에 해당하는 수치입니다.</p>
+<p>흥미로운 점은 아마추어 골퍼와 프로 골퍼의 드라이버 비거리 차이는 약 30% 정도지만, 퍼팅 성공률 차이는 훨씬 더 극명하다는 사실입니다. 즉, <strong>싱글 핸디캡으로 가는 가장 빠른 길은 드라이버 거리를 늘리는 것이 아니라 퍼팅 능력을 향상시키는 것</strong>입니다.</p>
+<h2 id="_2">퍼팅의 물리학: 공은 어떻게 굴러가는가</h2>
+<h3 id="_3">그린 속도(스팀프미터)의 이해</h3>
+<p>그린의 빠르기는 <strong>스팀프미터(Stimpmeter)</strong> 라는 도구로 측정됩니다. 일반적인 그린 속도는 다음과 같습니다:</p>
+<ul>
+<li><strong>느린 그린</strong>: 6~7피트 (동네 골프장)</li>
+<li><strong>보통 그린</strong>: 8~9피트 (대부분의 골프장)</li>
+<li><strong>빠른 그린</strong>: 10~11피트 (회원제 골프장)</li>
+<li><strong>매우 빠른 그린</strong>: 12피트 이상 (메이저 대회)</li>
+</ul>
+<p>그린 속도가 빠를수록 같은 거리를 보내려면 더 작은 스트로크가 필요합니다. 라운드 시작 전 연습 그린에서 그린 속도를 반드시 체크해야 하는 이유입니다.</p>
+<h3 id="_4">굴러가는 공의 이상적인 회전</h3>
+<p>USGA의 연구에 따르면, <strong>퍼팅된 공은 임팩트 후 약 20% 거리까지 미끄러지다가, 그 이후부터 순수하게 구르기 시작</strong>합니다. 이상적인 퍼팅은 공이 가능한 한 빨리 순회전(true roll)에 도달하도록 만드는 것입니다.</p>
+<p>이를 위해서는:<br />
+1. <strong>임팩트 시 퍼터 페이스가 살짝 상향(upward) 궤도</strong>여야 합니다<br />
+2. 공의 적도(equator) 또는 약간 위쪽을 타격해야 합니다<br />
+3. 이를 위해 공을 <strong>스탠스의 약간 앞쪽에 위치</strong>시키는 것이 좋습니다</p>
+<h2 id="_5">과학적 퍼팅 자세</h2>
+<h3 id="_6">눈의 위치가 결정적이다</h3>
+<p>미국 골프 인스트럭터 협회(USGTF)의 연구에 따르면, <strong>눈의 위치가 공의 바로 위 또는 약간 안쪽에 있을 때 가장 정확한 라인을 읽을 수 있습니다</strong>. </p>
+<p>자가 진단 방법:<br />
+1. 어드레스 자세를 잡는다<br />
+2. 공 위치에 다른 공을 떨어뜨린다<br />
+3. 공이 원래 공에 정확히 떨어지면 OK<br />
+4. 안쪽이나 바깥쪽으로 떨어지면 자세 교정 필요</p>
+<h3 id="_7">그립 압력은 약하게</h3>
+<p>여러 생체역학 연구에서 <strong>그립 압력이 강할수록 손목과 팔의 미세 근육이 긴장</strong>하여 부드러운 스트로크가 어려워진다고 보고됩니다. </p>
+<p>10단계로 표현하면 <strong>퍼팅 그립 압력은 3~4 정도</strong>가 이상적입니다. "참새를 손에 쥐고 있을 때 죽지 않을 정도의 힘"이라는 비유가 자주 사용됩니다.</p>
+<h2 id="_8">거리감의 비밀: 진자 운동</h2>
+<h3 id="_9">어깨로 치는 퍼팅</h3>
+<p>좋은 퍼팅은 손목이 아닌 <strong>어깨와 가슴(상체)의 진자 운동</strong>으로 이루어집니다. 그 이유는 물리학적으로 명확합니다:</p>
+<ul>
+<li>손목을 사용하면 변수가 많아져 일관성이 떨어집니다</li>
+<li>큰 근육(어깨, 등)을 사용하면 미세 운동 제어가 더 쉽습니다</li>
+<li>진자 운동은 자연스러운 가속과 감속을 만들어냅니다</li>
+</ul>
+<h3 id="_10">백스윙과 팔로우의 비율</h3>
+<p>PGA 투어 코치들이 강조하는 황금 비율은 <strong>백스윙:팔로우 = 1:1</strong>입니다. </p>
+<p>많은 아마추어 골퍼들이 백스윙을 짧게 하고 임팩트 시 가속하는 실수를 합니다. 이는 거리감을 망치는 주요 원인입니다. <strong>거리는 백스윙의 크기로 조절하고, 스피드는 일정하게 유지</strong>해야 합니다.</p>
+<h2 id="_11">라인 읽기의 과학</h2>
+<h3 id="_12">그린 경사 분석</h3>
+<p>그린에서 공이 휘는 정도는 다음 요소들이 결정합니다:</p>
+<ol>
+<li><strong>경사 각도</strong>: 1도의 경사는 10피트 거리에서 약 1인치의 휘어짐을 만듭니다</li>
+<li><strong>그린 속도</strong>: 빠를수록 더 많이 휩니다</li>
+<li><strong>공의 속도</strong>: 느릴수록 더 많이 휩니다</li>
+</ol>
+<h3 id="80">80% 규칙</h3>
+<p>골프 통계 전문가 데이브 펠츠(Dave Pelz)의 연구에 따르면, <strong>컵을 약 17인치(약 43cm) 지나가는 속도로 퍼팅할 때 가장 높은 성공률</strong>을 보입니다.</p>
+<p>너무 약한 퍼팅은:<br />
+- 그린의 작은 굴곡에 영향을 받음<br />
+- 마지막에 공이 휘어 빠질 가능성 높음</p>
+<p>너무 강한 퍼팅은:<br />
+- 컵에 들어가는 입구가 좁아짐(립아웃 가능성)<br />
+- 놓쳤을 때 다음 퍼팅이 멀어짐</p>
+<h2 id="_13">효과적인 퍼팅 연습법</h2>
+<h3 id="1">1. 동전 퍼팅 (정확성)</h3>
+<p>3피트 거리에 동전을 놓고, 동전을 정확히 맞추는 연습입니다. 컵보다 작은 목표를 정조준함으로써 정확도가 향상됩니다.</p>
+<h3 id="2">2. 게이트 드릴 (스트로크 경로)</h3>
+<p>홀 앞 1m 지점에 티 두 개를 퍼터 헤드보다 약간 넓게 꽂고, 그 사이로 공이 지나가게 합니다. 스트로크 경로를 교정하는 데 효과적입니다.</p>
+<h3 id="3">3. 거리 사다리 연습 (거리감)</h3>
+<p>3m, 6m, 9m, 12m 지점에 표시를 두고 차례로 퍼팅합니다. <strong>골프 인지과학 연구에 따르면, 매번 다른 거리를 연속으로 연습하는 것이 같은 거리만 반복하는 것보다 50% 이상 거리감 향상에 효과적</strong>입니다.</p>
+<h3 id="4-100">4. 100구 연속 퍼팅 (멘탈)</h3>
+<p>1m 거리에서 100개를 연속으로 넣는 연습입니다. 90개 이상을 넣을 때까지 반복하면 짧은 퍼팅에 대한 자신감이 비약적으로 상승합니다.</p>
+<h2 id="_14">실전 루틴: 일관성의 핵심</h2>
+<p>심리학 연구에 따르면, <strong>일관된 프리샷 루틴은 압박감 속에서도 퍼포먼스를 유지하는 데 결정적인 역할</strong>을 합니다. 추천하는 루틴은 다음과 같습니다:</p>
+<ol>
+<li><strong>공 뒤에서 라인 읽기</strong> (5초)</li>
+<li><strong>연습 스트로크 2회</strong> - 거리감에 집중</li>
+<li><strong>어드레스 자세</strong> - 정렬 확인</li>
+<li><strong>목표 한 번 응시</strong></li>
+<li><strong>즉시 스트로크</strong> (망설이지 않기)</li>
+</ol>
+<p>전체 루틴은 <strong>20초 이내</strong>로 끝내는 것이 가장 효과적이라는 연구 결과가 있습니다.</p>
+<h2 id="_15">마치며</h2>
+<p>퍼팅은 단순한 감각이나 운이 아닙니다. <strong>물리학, 생체역학, 인지심리학이 결합된 정교한 기술</strong>입니다. 오늘 소개한 과학적 원리들을 하나씩 적용해 본다면, 다음 라운드에서 분명 3~5타는 줄일 수 있을 것입니다.</p>
+<p>기억하세요. <strong>드라이버는 쇼이고, 퍼팅은 돈입니다(Drive for show, putt for dough).</strong> 이 오래된 골프 격언은 통계적으로도 정확한 진실입니다.</p>
+  </div>
+
+  <footer class="post-footer">
+    <a href="/" class="back-link">← 목록으로</a>
+  </footer>
+</article>
+
+<script>
+  function toggleCatEdit() {
+    const form = document.getElementById('cat-form');
+    form.classList.toggle('on');
+    if (form.classList.contains('on')) document.getElementById('cat-input').focus();
+    document.getElementById('cat-msg').textContent = '';
+  }
+
+  async function saveCategory(slug) {
+    const cat = document.getElementById('cat-input').value.trim();
+    const msg = document.getElementById('cat-msg');
+    if (!cat) { msg.style.color = '#f87171'; msg.textContent = '카테고리를 입력해 주세요.'; return; }
+
+    msg.style.color = 'var(--muted)'; msg.textContent = '저장 중...';
+    const res = await fetch(`/admin/api/posts/${encodeURIComponent(slug)}/category`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category: cat }),
+    });
+
+    if (res.ok) {
+      msg.style.color = 'var(--green)'; msg.textContent = '✅ 저장됨. 페이지 재로드 중...';
+      setTimeout(() => location.reload(), 1500);
+    } else if (res.status === 401) {
+      msg.style.color = '#f87171'; msg.textContent = '로그인이 필요합니다.';
+    } else {
+      msg.style.color = '#f87171'; msg.textContent = '오류가 발생했습니다.';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('cat-form').classList.contains('on')) {
+      saveCategory('골프-퍼팅-잘하는-법-스코어를-줄이는-과학적-접근');
+    }
+  });
+</script>
+
+  </main>
+
+  <footer>
+    <p>© Jessica</p>
+  </footer>
+</body>
+</html>
