@@ -5,7 +5,9 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import urlencode
 
+import httpx
 import frontmatter as fm
 from dotenv import load_dotenv
 from fastapi import FastAPI, Form, Request
@@ -18,6 +20,11 @@ BASE_DIR = Path(__file__).parent.parent.parent
 OUTPUT_DIR = BASE_DIR / "output"
 CONTENT_DIR = BASE_DIR / "content"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+LINKEDIN_CLIENT_ID     = os.getenv("LINKEDIN_CLIENT_ID", "")
+LINKEDIN_CLIENT_SECRET = os.getenv("LINKEDIN_CLIENT_SECRET", "")
+LINKEDIN_REDIRECT_URI  = os.getenv("LINKEDIN_REDIRECT_URI", "http://localhost:8080/admin/linkedin/callback")
+LINKEDIN_TOKEN_FILE    = BASE_DIR / ".linkedin_token.json"
 
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "password")
@@ -47,6 +54,18 @@ def _find_content_file(slug: str) -> Path | None:
         if _slugify(f.stem) == slug:
             return f
     return None
+
+
+def _li_load() -> dict | None:
+    if LINKEDIN_TOKEN_FILE.exists():
+        with open(LINKEDIN_TOKEN_FILE) as f:
+            return json.load(f)
+    return None
+
+
+def _li_save(data: dict):
+    with open(LINKEDIN_TOKEN_FILE, "w") as f:
+        json.dump(data, f)
 
 
 def _post_url_from_path(saved_path: str) -> str:
@@ -157,14 +176,23 @@ ADMIN_HTML = """<!DOCTYPE html>
     .act-btn:hover{opacity:.8}
     .btn-rewrite{background:#e0e7ff;color:#4338ca}
     .btn-delete{background:#fee2e2;color:#dc2626}
+    .btn-linkedin{background:#dbeafe;color:#0a66c2}
     .empty{text-align:center;padding:2rem;color:#aaa;font-size:.9rem}
+    .li-status{display:flex;align-items:center;gap:10px;font-size:.88rem;color:#555}
+    .li-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .li-dot.on{background:#16a34a;box-shadow:0 0 5px #16a34a}
+    .li-dot.off{background:#d1d5db}
   </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
     <h1>✍️ Admin</h1>
-    <a class="logout" href="/admin/logout">로그아웃</a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="/" target="_blank" style="font-size:.82rem;color:#555;text-decoration:none;padding:6px 12px;border:1px solid #ddd;border-radius:8px;background:#fff">🏠 홈</a>
+      <a href="/posts/" target="_blank" style="font-size:.82rem;color:#555;text-decoration:none;padding:6px 12px;border:1px solid #ddd;border-radius:8px;background:#fff">📋 글 목록</a>
+      <a class="logout" href="/admin/logout">로그아웃</a>
+    </div>
   </div>
 
   <!-- 새 글 작성 -->
@@ -188,6 +216,16 @@ ADMIN_HTML = """<!DOCTYPE html>
     <div class="links">
       <a id="post-link" href="/" target="_blank">새 글 바로가기 →</a>
       <a href="/" target="_blank">블로그 홈 →</a>
+    </div>
+  </div>
+
+  <!-- LinkedIn 연동 -->
+  <div class="card">
+    <div class="section-title">LinkedIn 연동</div>
+    <div id="li-status" class="li-status">
+      <span class="li-dot off" id="li-dot"></span>
+      <span id="li-text">확인 중...</span>
+      <a id="li-btn" href="/admin/linkedin/connect" style="margin-left:auto;padding:7px 16px;background:#0a66c2;color:#fff;border-radius:8px;font-size:.82rem;font-weight:600;text-decoration:none;">🔗 연결하기</a>
     </div>
   </div>
 
@@ -252,6 +290,7 @@ ADMIN_HTML = """<!DOCTYPE html>
           <div class="pdate">${p.date || ''}</div>
         </div>
         <div class="actions">
+          <button class="act-btn btn-linkedin" onclick="liPost('${p.slug}','${escHtml(p.title)}')">in 포스팅</button>
           <button class="act-btn btn-rewrite" onclick="rewritePost('${p.slug}','${escHtml(p.title)}')">🔄 다시 작성</button>
           <button class="act-btn btn-delete"  onclick="deletePost('${p.slug}','${escHtml(p.title)}')">🗑 삭제</button>
         </div>
@@ -282,6 +321,36 @@ ADMIN_HTML = """<!DOCTYPE html>
     startStream('/admin/api/categorize', btn, '🗂 카테고리 재설정');
   }
 
+  // ── LinkedIn 상태 ──────────────────────────────────────────────
+  async function checkLinkedIn() {
+    const res = await fetch('/admin/api/linkedin/status');
+    const data = await res.json();
+    const dot = document.getElementById('li-dot');
+    const text = document.getElementById('li-text');
+    const btn = document.getElementById('li-btn');
+    if (data.connected) {
+      dot.className = 'li-dot on';
+      text.textContent = `연결됨: ${data.name}`;
+      btn.textContent = '🔄 재연결';
+      btn.style.background = '#6b7280';
+    } else {
+      dot.className = 'li-dot off';
+      text.textContent = '연결되지 않았습니다.';
+      btn.textContent = '🔗 연결하기';
+      btn.style.background = '#0a66c2';
+    }
+  }
+
+  // ── LinkedIn 포스팅 ───────────────────────────────────────────
+  async function liPost(slug, title) {
+    if (!confirm(`"${title}" 글을 LinkedIn에 포스팅할까요?`)) return;
+    const res = await fetch(`/admin/api/posts/${encodeURIComponent(slug)}/linkedin`, { method:'POST' });
+    const data = await res.json();
+    if (res.ok) alert('✅ LinkedIn에 포스팅됐습니다!');
+    else alert(`❌ 실패: ${data.error}`);
+  }
+
+  checkLinkedIn();
   loadPosts();
 </script>
 </body></html>"""
@@ -341,6 +410,28 @@ def list_posts(request: Request):
     return JSONResponse(posts)
 
 
+@app.patch("/admin/api/posts/{slug}/category")
+async def update_category(slug: str, request: Request):
+    if not _is_authenticated(request):
+        return JSONResponse({"error": "unauthorized"}, status_code=401)
+    body = await request.json()
+    category = (body.get("category") or "").strip()
+    if not category:
+        return JSONResponse({"error": "category required"}, status_code=400)
+    f = _find_content_file(slug)
+    if not f:
+        return JSONResponse({"error": "not found"}, status_code=404)
+    post = fm.load(f)
+    post.metadata["category"] = category
+    with open(f, "w", encoding="utf-8") as out:
+        out.write(fm.dumps(post))
+    subprocess.run(
+        [sys.executable, "-m", "auto_blog", "build"],
+        cwd=str(BASE_DIR), capture_output=True,
+    )
+    return JSONResponse({"ok": True, "category": category})
+
+
 @app.delete("/admin/api/posts/{slug}")
 def delete_post(slug: str, request: Request):
     if not _is_authenticated(request):
@@ -380,6 +471,108 @@ def generate(request: Request, topic: str, style: str = "informative"):
     if not _is_authenticated(request):
         return RedirectResponse(url="/admin/login", status_code=303)
     return _sse_run([sys.executable, "-m", "auto_blog", "run", "--topic", topic, "--style", style])
+
+
+@app.get("/admin/api/linkedin/status")
+def linkedin_status(request: Request):
+    if not _is_authenticated(request):
+        return JSONResponse({"error": "unauthorized"}, status_code=401)
+    token = _li_load()
+    if token and token.get("access_token"):
+        return JSONResponse({"connected": True, "name": token.get("name", "")})
+    return JSONResponse({"connected": False})
+
+
+@app.get("/admin/linkedin/connect")
+def linkedin_connect(request: Request):
+    if not _is_authenticated(request):
+        return RedirectResponse(url="/admin/login", status_code=303)
+    if not LINKEDIN_CLIENT_ID:
+        return HTMLResponse("<p style='font-family:sans-serif;padding:2rem'>⚠️ .env에 LINKEDIN_CLIENT_ID가 없습니다.</p>")
+    params = urlencode({
+        "response_type": "code",
+        "client_id": LINKEDIN_CLIENT_ID,
+        "redirect_uri": LINKEDIN_REDIRECT_URI,
+        "scope": "openid profile w_member_social",
+        "state": "li_auth",
+    })
+    return RedirectResponse(url=f"https://www.linkedin.com/oauth/v2/authorization?{params}")
+
+
+@app.get("/admin/linkedin/callback")
+async def linkedin_callback(request: Request, code: str = None, error: str = None):
+    if not _is_authenticated(request):
+        return RedirectResponse(url="/admin/login", status_code=303)
+    if error or not code:
+        return RedirectResponse(url="/admin?msg=linkedin_error")
+    async with httpx.AsyncClient() as client:
+        token_resp = await client.post(
+            "https://www.linkedin.com/oauth/v2/accessToken",
+            data={
+                "grant_type": "authorization_code",
+                "code": code,
+                "redirect_uri": LINKEDIN_REDIRECT_URI,
+                "client_id": LINKEDIN_CLIENT_ID,
+                "client_secret": LINKEDIN_CLIENT_SECRET,
+            },
+        )
+        token_data = token_resp.json()
+        info_resp = await client.get(
+            "https://api.linkedin.com/v2/userinfo",
+            headers={"Authorization": f"Bearer {token_data['access_token']}"},
+        )
+        info = info_resp.json()
+        token_data["sub"] = info.get("sub", "")
+        token_data["name"] = info.get("name", "")
+        _li_save(token_data)
+    return RedirectResponse(url="/admin?msg=linkedin_ok")
+
+
+@app.post("/admin/api/posts/{slug}/linkedin")
+async def post_to_linkedin(slug: str, request: Request):
+    if not _is_authenticated(request):
+        return JSONResponse({"error": "unauthorized"}, status_code=401)
+    token = _li_load()
+    if not token or not token.get("access_token"):
+        return JSONResponse({"error": "LinkedIn이 연결되지 않았습니다. Admin에서 먼저 연결해 주세요."}, status_code=400)
+    f = _find_content_file(slug)
+    if not f:
+        return JSONResponse({"error": "포스트를 찾을 수 없습니다."}, status_code=404)
+    post = fm.load(f)
+    title   = post.metadata.get("title", slug)
+    excerpt = post.metadata.get("excerpt", "")
+    site_url = os.getenv("SITE_URL", "https://jessica9740.github.io")
+    post_url = f"{site_url}/posts/{_slugify(f.stem)}.html"
+    text = f"{title}\n\n{excerpt}\n\n🔗 {post_url}"
+    payload = {
+        "author": f"urn:li:person:{token['sub']}",
+        "lifecycleState": "PUBLISHED",
+        "specificContent": {
+            "com.linkedin.ugc.ShareContent": {
+                "shareCommentary": {"text": text},
+                "shareMediaCategory": "ARTICLE",
+                "media": [{
+                    "status": "READY",
+                    "description": {"text": excerpt[:200]},
+                    "originalUrl": post_url,
+                    "title": {"text": title},
+                }],
+            }
+        },
+        "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"},
+    }
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(
+            "https://api.linkedin.com/v2/ugcPosts",
+            json=payload,
+            headers={
+                "Authorization": f"Bearer {token['access_token']}",
+                "X-Restli-Protocol-Version": "2.0.0",
+            },
+        )
+    if resp.status_code in (200, 201):
+        return JSONResponse({"ok": True})
+    return JSONResponse({"error": resp.text}, status_code=resp.status_code)
 
 
 @app.get("/admin/api/categorize")

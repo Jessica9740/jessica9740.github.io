@@ -35,6 +35,8 @@
   .post-card .date { color:var(--muted); font-size:.82rem; }
   .post-card .cat-badge { background:rgba(52,211,153,.1); border:1px solid rgba(52,211,153,.25);
     color:var(--green); border-radius:12px; padding:.15rem .6rem; font-size:.75rem; font-weight:600; }
+  .post-card .thumb { width:100%; height:160px; object-fit:cover; border-radius:8px;
+    margin-bottom:1rem; border:1px solid var(--border); }
   .post-card h2 { font-size:1.25rem; font-weight:700; letter-spacing:-.02em; margin-bottom:.5rem; line-height:1.4; }
   .post-card h2 a { color:var(--text); }
   .post-card h2 a:hover { color:var(--accent-light); text-decoration:none; }
@@ -49,6 +51,7 @@
 
 {% block content %}
 <div class="hero">
+  <img src="/static/logo.jpg" width="100" height="100" alt="Jess Notes logo" style="border-radius:22px;margin-bottom:1.2rem;box-shadow:0 8px 32px rgba(124,106,255,0.35);"/>
   <div class="hero-badge"><span class="dot"></span> 새로운 인사이트 · 매일 업데이트</div>
   <h1>{{ config.site.title }}</h1>
   <p>{{ config.site.description }}</p>
@@ -72,6 +75,9 @@
   <div class="posts-grid">
     {% for post in posts %}
     <article class="post-card" data-category="{{ post.category }}" data-title="{{ post.title | lower }}">
+      {% if post.image %}
+      <img src="{{ post.image }}" alt="{{ post.title }}" class="thumb" />
+      {% endif %}
       <div class="meta">
         {% if post.date %}<span class="date">{{ post.date }}</span>{% endif %}
         <a href="{{ post.category_url }}" class="cat-badge">{{ post.category }}</a>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c6aff"/>
+      <stop offset="100%" stop-color="#4338ca"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="100" height="100" rx="22" fill="url(#bg)" filter="url(#shadow)"/>
+
+  <!-- 노트 라인 (오른쪽 상단) -->
+  <line x1="63" y1="26" x2="80" y2="26" stroke="rgba(255,255,255,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="63" y1="34" x2="80" y2="34" stroke="rgba(255,255,255,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="63" y1="42" x2="73" y2="42" stroke="rgba(255,255,255,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- J 상단 가로선 -->
+  <line x1="34" y1="22" x2="60" y2="22" stroke="white" stroke-width="9" stroke-linecap="round"/>
+  <!-- J 세로선 -->
+  <line x1="52" y1="22" x2="52" y2="62" stroke="white" stroke-width="9" stroke-linecap="round"/>
+  <!-- J 하단 곡선 -->
+  <path d="M52 62 Q52 80 38 80 Q24 80 22 68" stroke="white" stroke-width="9" fill="none" stroke-linecap="round"/>
+
+  <!-- 초록 강조 점 -->
+  <circle cx="76" cy="58" r="7" fill="#34d399"/>
+  <circle cx="76" cy="58" r="4" fill="#10b981"/>
+</svg>

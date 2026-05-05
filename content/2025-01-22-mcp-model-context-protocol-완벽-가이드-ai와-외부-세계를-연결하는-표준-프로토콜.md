@@ -1,5 +1,5 @@
 ---
-category: '**AI**'
+category: AI
 date: 2025-01-22
 excerpt: Anthropic이 공개한 MCP는 AI 모델이 외부 데이터와 도구에 안전하게 접근할 수 있도록 돕는 개방형 표준입니다. 이 글에서는
   MCP의 개념, 작동 원리, 실제 활용 사례까지 체계적으로 정리합니다.

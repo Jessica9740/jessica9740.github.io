@@ -149,6 +149,34 @@
   }
 
   .back-link:hover { color: var(--accent-light); text-decoration: none; }
+
+  .post-image { width:100%; max-height:420px; object-fit:cover; border-radius:12px;
+    margin-bottom:2.5rem; border:1px solid var(--border); }
+
+  .post-content .references { margin-top:2.5rem; padding:1.5rem; background:var(--surface);
+    border:1px solid var(--border); border-radius:10px; }
+  .post-content .references h2 { font-size:1.1rem; margin-bottom:1rem;
+    border-bottom:1px solid var(--border); padding-bottom:.5rem; }
+  .post-content .references ul { margin-left:1.2rem; }
+  .post-content .references li { margin-bottom:.5rem; font-size:.9rem; }
+  .post-content .references a { color:var(--accent-light); word-break:break-all; }
+
+  .cat-edit-wrap { display:inline-flex; align-items:center; gap:.4rem; }
+  .cat-edit-btn { background:none; border:none; cursor:pointer; color:var(--muted);
+    font-size:.75rem; padding:.1rem .35rem; border-radius:4px; transition:color .15s; }
+  .cat-edit-btn:hover { color:var(--accent-light); }
+  .cat-edit-form { display:none; align-items:center; gap:.4rem; }
+  .cat-edit-form.on { display:inline-flex; }
+  .cat-edit-input { background:var(--surface); border:1.5px solid var(--accent);
+    border-radius:6px; color:var(--text); font-size:.8rem; padding:.25rem .6rem;
+    outline:none; width:120px; }
+  .cat-edit-save { background:var(--accent); color:#fff; border:none; border-radius:6px;
+    font-size:.78rem; font-weight:600; padding:.25rem .7rem; cursor:pointer; }
+  .cat-edit-save:hover { background:#6356d4; }
+  .cat-edit-cancel { background:none; border:none; color:var(--muted); font-size:.78rem;
+    cursor:pointer; padding:.25rem .4rem; }
+  .cat-edit-cancel:hover { color:var(--text); }
+  .cat-msg { font-size:.78rem; margin-left:.4rem; }
 </style>
 {% endblock %}
 
@@ -158,7 +186,16 @@
     <div class="meta">
       {% if post.date %}<span class="date">{{ post.date }}</span>{% endif %}
       {% if post.category %}
-      <a href="{{ post.category_url }}" style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--green);border-radius:12px;padding:.15rem .6rem;font-size:.75rem;font-weight:600;text-decoration:none;">{{ post.category }}</a>
+      <div class="cat-edit-wrap">
+        <a href="{{ post.category_url }}" id="cat-badge" style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--green);border-radius:12px;padding:.15rem .6rem;font-size:.75rem;font-weight:600;text-decoration:none;">{{ post.category }}</a>
+        <button class="cat-edit-btn" onclick="toggleCatEdit()" title="카테고리 변경">✏️</button>
+        <span class="cat-edit-form" id="cat-form">
+          <input class="cat-edit-input" id="cat-input" value="{{ post.category }}" placeholder="카테고리 입력" />
+          <button class="cat-edit-save" onclick="saveCategory('{{ post.slug }}')">저장</button>
+          <button class="cat-edit-cancel" onclick="toggleCatEdit()">✕</button>
+          <span class="cat-msg" id="cat-msg"></span>
+        </span>
+      </div>
       {% endif %}
       {% for tag in post.tags %}
       <span class="tag">{{ tag }}</span>
@@ -170,6 +207,10 @@
     {% endif %}
   </header>
 
+  {% if post.image %}
+  <img src="{{ post.image }}" alt="{{ post.title }}" class="post-image" />
+  {% endif %}
+
   <div class="post-content">
     {{ post.content | safe }}
   </div>
@@ -178,4 +219,41 @@
     <a href="/" class="back-link">← 목록으로</a>
   </footer>
 </article>
+
+<script>
+  function toggleCatEdit() {
+    const form = document.getElementById('cat-form');
+    form.classList.toggle('on');
+    if (form.classList.contains('on')) document.getElementById('cat-input').focus();
+    document.getElementById('cat-msg').textContent = '';
+  }
+
+  async function saveCategory(slug) {
+    const cat = document.getElementById('cat-input').value.trim();
+    const msg = document.getElementById('cat-msg');
+    if (!cat) { msg.style.color = '#f87171'; msg.textContent = '카테고리를 입력해 주세요.'; return; }
+
+    msg.style.color = 'var(--muted)'; msg.textContent = '저장 중...';
+    const res = await fetch(`/admin/api/posts/${encodeURIComponent(slug)}/category`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category: cat }),
+    });
+
+    if (res.ok) {
+      msg.style.color = 'var(--green)'; msg.textContent = '✅ 저장됨. 페이지 재로드 중...';
+      setTimeout(() => location.reload(), 1500);
+    } else if (res.status === 401) {
+      msg.style.color = '#f87171'; msg.textContent = '로그인이 필요합니다.';
+    } else {
+      msg.style.color = '#f87171'; msg.textContent = '오류가 발생했습니다.';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('cat-form').classList.contains('on')) {
+      saveCategory('{{ post.slug }}');
+    }
+  });
+</script>
 {% endblock %}

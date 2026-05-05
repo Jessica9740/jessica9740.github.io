@@ -43,6 +43,14 @@ def build_site() -> None:
     (output_dir / "posts").mkdir()
     (output_dir / "categories").mkdir()
 
+    static_src = Path(__file__).parent / "static"
+    if static_src.exists():
+        shutil.copytree(static_src, output_dir / "static")
+
+    images_src = base_dir / "content" / "images"
+    if images_src.exists():
+        shutil.copytree(images_src, output_dir / "images")
+
     md_converter = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "nl2br"])
 
     posts = []
@@ -78,6 +86,7 @@ def build_site() -> None:
             "url": f"/posts/{slug}.html",
             "category": category,
             "category_url": f"/categories/{cat_slug}/",
+            "image": post_data_raw.metadata.get("image", ""),
         }
         posts.append(post_data)
 
